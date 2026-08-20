@@ -7,137 +7,383 @@
     <style>
         :root {
             --navy: #0A1A3A;
+            --navy-light: #12264A;
+            --navy-lighter: #1A335C;
             --blue: #8BA5C4;
+            --blue-light: #A5BAD4;
+            --blue-dark: #5A7A9E;
             --gold: #D4AF37;
+            --gold-light: #E5C765;
+            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #E5C765 100%);
             --white: #FFFFFF;
             --off-white: #F8F9FA;
+            --gray-50: #FAFAFA;
+            --gray-100: #F5F5F5;
             --gray-200: #E8E8E8;
+            --gray-300: #D4D4D4;
+            --gray-400: #A3A3A3;
             --text-heading: #0A1A3A;
             --text-body: #555555;
+            --shadow-sm: 0 1px 3px rgba(10,26,58,0.06);
+            --shadow-md: 0 8px 24px rgba(10,26,58,0.08);
             --shadow-lg: 0 20px 40px rgba(10,26,58,0.12);
-            --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            --shadow-xl: 0 30px 60px rgba(10,26,58,0.15);
+            --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+            --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--font); background: var(--white); color: var(--text-body); line-height: 1.6; padding-top: 80px; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        body { font-family: var(--font); background: var(--white); color: var(--text-body); line-height: 1.6; overflow-x: hidden; padding-top: 90px; }
 
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
 
-        /* NAVBAR */
+        .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+
+        /* ========== NAVIGATION ========== */
         .navbar {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: var(--navy); border-bottom: 3px solid var(--blue);
-            height: 80px; display: flex; align-items: center;
+            background: var(--navy);
+            border-bottom: 3px solid var(--blue);
+            height: 90px;
+            display: flex;
+            align-items: center;
             box-shadow: 0 2px 20px rgba(10,26,58,0.3);
+            transition: all var(--transition);
         }
-        .navbar-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 2rem; gap: 2rem; }
-        .navbar-brand { display: flex; align-items: center; gap: 0.75rem; }
-        .brand-icon { width: 45px; height: 45px; border: 2px solid var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(139,165,196,0.1); }
-        .brand-icon svg { width: 25px; height: 25px; color: var(--blue); }
-        .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
-        .brand-chinese { color: var(--white); font-size: 0.95rem; font-weight: 600; }
-        .brand-english { color: var(--blue); font-size: 1.2rem; font-weight: 800; letter-spacing: 0.15em; }
-        .navbar-menu { display: flex; gap: 2rem; align-items: center; }
-        .navbar-menu a { color: rgba(255,255,255,0.9); font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: color 0.3s; }
-        .navbar-menu a:hover { color: var(--blue); }
-        .navbar-cta { background: var(--blue); color: var(--navy); padding: 0.6rem 1.3rem; border-radius: 4px; font-weight: 600; text-decoration: none; }
-        .navbar-toggle { display: none; background: none; border: none; cursor: pointer; }
-        .navbar-toggle span { display: block; width: 25px; height: 2px; background: var(--white); margin: 5px 0; }
+        .navbar.scrolled {
+            height: 75px;
+            box-shadow: 0 4px 30px rgba(10,26,58,0.5);
+        }
+        .navbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            gap: 2rem;
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            min-width: 0;
+        }
+
+        /* LOGO - FIXED TO FILL SPACE */
+        .navbar-logo {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+            object-position: left center;
+            display: block;
+            transition: all var(--transition);
+            animation: logoGlow 3s ease-in-out infinite;
+        }
+        .navbar.scrolled .navbar-logo {
+            height: 55px;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(139,165,196,0.3)); }
+            50% { filter: drop-shadow(0 0 15px rgba(139,165,196,0.6)); }
+        }
+
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .navbar-menu a {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color var(--transition);
+            white-space: nowrap;
+            letter-spacing: 0.02em;
+        }
+        .navbar-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--blue);
+            transition: width var(--transition);
+            border-radius: 2px;
+        }
+        .navbar-menu a:hover { color: var(--blue-light); }
+        .navbar-menu a:hover::after { width: 100%; }
+
+        .navbar-cta {
+            background: var(--blue);
+            color: var(--navy);
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+        .navbar-cta:hover {
+            background: var(--blue-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(139,165,196,0.4);
+        }
+
+        .navbar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        .navbar-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: var(--white);
+            margin: 5px 0;
+            transition: all var(--transition);
+            border-radius: 2px;
+        }
+        .navbar-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .navbar-toggle.active span:nth-child(2) { opacity: 0; }
+        .navbar-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
         @media (max-width: 1024px) {
-            .navbar-menu { position: fixed; top: 80px; right: -100%; width: 300px; height: calc(100vh - 80px); background: var(--navy); flex-direction: column; padding: 2rem; gap: 1.2rem; transition: right 0.3s; }
+            .navbar-menu {
+                position: fixed;
+                top: 90px;
+                right: -100%;
+                width: 100%;
+                max-width: 350px;
+                height: calc(100vh - 90px);
+                background: var(--navy);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 2rem;
+                gap: 1.2rem;
+                transition: right 0.4s;
+                box-shadow: -10px 0 30px rgba(10,26,58,0.5);
+            }
             .navbar-menu.active { right: 0; }
             .navbar-toggle { display: block; }
         }
 
-        /* HERO */
-        .hero { position: relative; min-height: calc(100vh - 80px); background: var(--navy); display: flex; align-items: center; overflow: hidden; }
-        .hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0A1A3A 0%, #12264A 50%, #1A335C 100%); }
-        .hero-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; text-align: center; padding: 3rem 0; }
-        .hero-badge { display: inline-block; background: rgba(139,165,196,0.15); border: 1px solid rgba(139,165,196,0.3); padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1.5rem; font-size: 0.8rem; color: var(--blue); }
-        .hero-title { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 700; color: var(--white); margin-bottom: 1.2rem; }
-        .hero-subtitle { font-size: 1.1rem; color: rgba(255,255,255,0.8); margin-bottom: 2rem; }
-        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        @media (max-width: 768px) {
+            body { padding-top: 75px; }
+            .navbar { height: 75px; }
+            .navbar-logo { height: 50px; }
+            .navbar.scrolled { height: 65px; }
+            .navbar.scrolled .navbar-logo { height: 45px; }
+        }
 
-        .btn { display: inline-flex; padding: 0.9rem 1.8rem; font-size: 0.9rem; font-weight: 600; border-radius: 4px; cursor: pointer; text-decoration: none; transition: all 0.3s; border: 2px solid transparent; }
+        /* ========== HERO ========== */
+        .hero {
+            position: relative;
+            min-height: calc(100vh - 90px);
+            background: var(--navy);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #0A1A3A 0%, #12264A 50%, #1A335C 100%);
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139,165,196,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139,165,196,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 60% 80%, rgba(212,175,55,0.1) 0%, transparent 50%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 3rem 0;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(139,165,196,0.15);
+            border: 1px solid rgba(139,165,196,0.3);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--blue-light);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.02em;
+        }
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 1.8rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all var(--transition);
+            border: 2px solid transparent;
+        }
         .btn-blue { background: var(--blue); color: var(--navy); }
-        .btn-blue:hover { background: #A5BAD4; transform: translateY(-2px); }
+        .btn-blue:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,165,196,0.4); }
         .btn-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.4); }
-        .btn-outline:hover { background: var(--white); color: var(--navy); }
+        .btn-outline:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
 
-        /* SECTIONS */
-        .section { padding: 4rem 0; }
-        .section-header { text-align: center; max-width: 650px; margin: 0 auto 2.5rem; }
-        .section-label { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; font-weight: 600; color: var(--blue); }
-        .section-title { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: var(--text-heading); margin: 0.5rem 0; }
-        .section-subtitle { color: var(--text-body); }
+        /* ========== SECTIONS ========== */
+        .section { padding: 5rem 0; }
+        .section-header { text-align: center; max-width: 650px; margin: 0 auto 3rem; }
+        .section-label { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; font-weight: 600; color: var(--blue); }
+        .section-title { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: var(--text-heading); margin: 0.5rem 0 1rem; }
+        .section-subtitle { color: var(--text-body); font-size: 1rem; }
 
         /* SERVICES */
         .services { background: var(--off-white); }
         .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-        .service-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 6px; padding: 2rem 1.5rem; }
+        .service-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 2rem 1.5rem;
+            transition: all var(--transition);
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--blue);
+        }
         .service-icon { width: 45px; height: 45px; color: var(--blue); margin-bottom: 1rem; }
         .service-card h3 { font-size: 1.1rem; font-weight: 600; color: var(--text-heading); margin-bottom: 0.6rem; }
-        .service-card p { font-size: 0.9rem; }
+        .service-card p { font-size: 0.9rem; color: var(--text-body); }
 
-        /* HOW */
+        /* HOW IT WORKS */
         .how { background: var(--navy); }
         .how .section-title { color: var(--white); }
         .how .section-subtitle { color: rgba(255,255,255,0.7); }
         .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem; }
         .step { text-align: center; }
-        .step-num { font-size: 3rem; font-weight: 800; color: var(--blue); }
-        .step h4 { color: var(--white); margin: 0.5rem 0; }
+        .step-num { font-size: 3rem; font-weight: 800; color: var(--blue); line-height: 1; margin-bottom: 0.5rem; }
+        .step h4 { color: var(--white); font-size: 1rem; margin-bottom: 0.5rem; }
         .step p { color: rgba(255,255,255,0.7); font-size: 0.85rem; }
 
         /* CONTACT */
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-        .contact-form { background: var(--white); padding: 2rem; border-radius: 6px; box-shadow: var(--shadow-lg); border: 2px solid var(--navy); border-top: 4px solid var(--blue); }
-        .form-title { text-align: center; font-size: 1.3rem; font-weight: 700; color: var(--text-heading); margin-bottom: 1.5rem; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+        .contact-info-item { display: flex; gap: 0.75rem; align-items: flex-start; margin-top: 1.5rem; }
+        .contact-info-icon { color: var(--blue); flex-shrink: 0; margin-top: 0.2rem; }
+        .contact-form {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--navy);
+            border-top: 4px solid var(--blue);
+        }
+        .form-title { font-size: 1.3rem; font-weight: 700; color: var(--text-heading); text-align: center; margin-bottom: 1.5rem; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
         .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
         .form-group-full { grid-column: 1 / -1; }
         .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--text-heading); }
-        .form-group input, .form-group select, .form-group textarea { padding: 0.75rem; border: 1.5px solid var(--gray-200); border-radius: 4px; font-size: 0.9rem; font-family: var(--font); }
-        .form-success { display: none; padding: 0.8rem; background: #f0fdf4; border: 1px solid #86efac; border-radius: 4px; color: #166534; margin-top: 1rem; }
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.75rem 1rem;
+            border: 1.5px solid var(--gray-300);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-family: var(--font);
+            transition: all var(--transition);
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(139,165,196,0.15);
+        }
+        .form-success {
+            display: none;
+            padding: 0.8rem 1rem;
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 4px;
+            color: #166534;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
 
         /* FOOTER */
-        .footer { background: var(--navy); color: rgba(255,255,255,0.8); padding: 3rem 0 1.5rem; }
-        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .footer h4 { color: var(--white); margin-bottom: 1rem; }
-        .footer-links li { margin-bottom: 0.5rem; list-style: none; }
-        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; }
-        .footer-bottom { text-align: center; padding-top: 1rem; font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+        .footer { background: var(--navy); color: rgba(255,255,255,0.8); padding: 4rem 0 1.5rem; }
+        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .footer-brand h3 { color: var(--white); font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .footer-brand p { font-style: italic; color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+        .footer h4 { color: var(--white); font-size: 0.95rem; margin-bottom: 1rem; }
+        .footer-links li { margin-bottom: 0.5rem; }
+        .footer-links a { color: rgba(255,255,255,0.7); font-size: 0.85rem; transition: color var(--transition); }
+        .footer-links a:hover { color: var(--blue-light); }
+        .footer-contact p { font-size: 0.85rem; margin-bottom: 0.5rem; }
+        .footer-bottom { text-align: center; padding-top: 1.5rem; font-size: 0.8rem; color: rgba(255,255,255,0.5); }
 
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
             .services-grid { grid-template-columns: repeat(2, 1fr); }
             .steps-grid { grid-template-columns: repeat(2, 1fr); }
-            .contact-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
         }
         @media (max-width: 768px) {
             .services-grid { grid-template-columns: 1fr; }
             .steps-grid { grid-template-columns: 1fr; }
-            .footer-top { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; gap: 2rem; }
             .form-grid { grid-template-columns: 1fr; }
             .form-group-full { grid-column: 1; }
+            .contact-form { padding: 1.5rem; }
         }
+
+        /* SCROLL REVEAL */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
+<!-- NAVIGATION -->
 <nav class="navbar" id="navbar">
     <div class="navbar-inner">
         <div class="navbar-brand">
-            <div class="brand-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </div>
-          <div class="brand-text">
-    <span class="brand-english">HANGZHOU HAFA</span>
-    <span class="brand-chinese">杭州哈发贸易有限公司</span>
-</div>
-            
+            <img src="hafa-logo.png" alt="Hangzhou Hafa Trading Co., Ltd." class="navbar-logo" id="navbarLogo">
         </div>
         <div class="navbar-menu" id="navbarMenu">
             <a href="#home">Home</a>
@@ -146,22 +392,26 @@
             <a href="#contact">Contact</a>
             <a href="#contact" class="navbar-cta">Request a Service</a>
         </div>
-        <button class="navbar-toggle" id="navbarToggle"><span></span><span></span><span></span></button>
+        <button class="navbar-toggle" id="navbarToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
     </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
     <div class="hero-bg"></div>
-    <div class="container"><div class="hero-content">
-        <div class="hero-badge">✦ China–Africa Business Partner</div>
-        <h1 class="hero-title">Your Trusted China–Africa Business Partner</h1>
-        <p class="hero-subtitle">From sourcing and factory verification to container shipping and business support, we help you connect with reliable opportunities across China and Africa.</p>
-        <div class="hero-buttons">
-            <a href="#services" class="btn btn-blue">Explore Our Services</a>
-            <a href="#contact" class="btn btn-outline">Request a Service</a>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-badge">✦ China–Africa Business Partner</div>
+            <h1 class="hero-title">Your Trusted China–Africa Business Partner</h1>
+            <p class="hero-subtitle">From sourcing and factory verification to container shipping and business support, we help you connect with reliable opportunities across China and Africa.</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-blue">Explore Our Services</a>
+                <a href="#contact" class="btn btn-outline">Request a Service</a>
+            </div>
         </div>
-    </div></div>
+    </div>
 </section>
 
 <!-- SERVICES -->
@@ -173,12 +423,12 @@
             <p class="section-subtitle">End-to-end support for your China–Africa trade needs.</p>
         </div>
         <div class="services-grid">
-            <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 14l-9 7-9-7 9-7 9 7z"/><path d="M12 3v18"/></svg></div><h3>Container Shipping</h3><p>Reliable logistics for moving goods between China and Africa.</p></div>
-            <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="2"/></svg></div><h3>Money Exchange</h3><p>Currency exchange support for cross-border business.</p></div>
-            <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div><h3>Product Sourcing</h3><p>Finding quality products from verified Chinese suppliers.</p></div>
-            <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><h3>Factory Verification</h3><p>On-site audits before you make business decisions.</p></div>
-            <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10h16v10H4z"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><h3>Canton Fair & Visa Assistance</h3><p>Support for travel and business events in China.</p></div>
-            <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l7-3v17"/></svg></div><h3>China Business Services</h3><p>Practical support for your China operations.</p></div>
+            <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 14l-9 7-9-7 9-7 9 7z"/><path d="M12 3v18"/></svg></div><h3>Container Shipping</h3><p>Reliable logistics for moving goods between China and Africa.</p></div>
+            <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="2"/></svg></div><h3>Money Exchange</h3><p>Currency exchange support for cross-border business.</p></div>
+            <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div><h3>Product Sourcing</h3><p>Finding quality products from verified Chinese suppliers.</p></div>
+            <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><h3>Factory Verification</h3><p>On-site audits before you make business decisions.</p></div>
+            <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10h16v10H4z"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><h3>Canton Fair & Visa Assistance</h3><p>Support for travel and business events in China.</p></div>
+            <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l7-3v17"/></svg></div><h3>China Business Services</h3><p>Practical support for your China operations.</p></div>
         </div>
     </div>
 </section>
@@ -189,13 +439,13 @@
         <div class="section-header">
             <span class="section-label">Process</span>
             <h2 class="section-title">How It Works</h2>
-            <p class="section-subtitle">A simple, transparent process.</p>
+            <p class="section-subtitle">A simple, transparent process from inquiry to delivery.</p>
         </div>
         <div class="steps-grid">
-            <div class="step"><div class="step-num">01</div><h4>Tell Us What You Need</h4><p>Share your requirements.</p></div>
-            <div class="step"><div class="step-num">02</div><h4>Find the Right Solution</h4><p>We identify options.</p></div>
-            <div class="step"><div class="step-num">03</div><h4>Verify & Arrange</h4><p>We check and coordinate.</p></div>
-            <div class="step"><div class="step-num">04</div><h4>Move Forward</h4><p>Proceed with confidence.</p></div>
+            <div class="step reveal"><div class="step-num">01</div><h4>Tell Us What You Need</h4><p>Share your requirements.</p></div>
+            <div class="step reveal"><div class="step-num">02</div><h4>Find the Right Solution</h4><p>We identify options.</p></div>
+            <div class="step reveal"><div class="step-num">03</div><h4>Verify & Arrange</h4><p>We check and coordinate.</p></div>
+            <div class="step reveal"><div class="step-num">04</div><h4>Move Forward</h4><p>Proceed with confidence.</p></div>
         </div>
     </div>
 </section>
@@ -207,8 +457,16 @@
             <div>
                 <span class="section-label">Contact Us</span>
                 <h2 class="section-title">Get in Touch</h2>
-                <p style="margin-bottom:1rem;">Have a sourcing, shipping, or China business requirement?</p>
-                <p><strong>Location:</strong> Xiaoshan District, Hangzhou, China</p>
+                <p>Have a sourcing, shipping, or China business requirement?</p>
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div>
+                        <strong style="color:var(--text-heading);">Location</strong><br>
+                        Xiaoshan District, Hangzhou, China
+                    </div>
+                </div>
             </div>
             <div class="contact-form">
                 <h3 class="form-title">Request a Service</h3>
@@ -232,21 +490,52 @@
 <footer class="footer">
     <div class="container">
         <div class="footer-top">
-        <h3 style="color:white;">HANGZHOU HAFA TRADING CO., LTD.</h3>
-<p style="font-style:italic; color:rgba(255,255,255,0.6);">"Your trusted China–Africa business partner."</p> </div>
-            <div class="footer-links"><h4>Quick Links</h4><ul><li><a href="#home">Home</a></li><li><a href="#services">Services</a></li><li><a href="#how">How It Works</a></li><li><a href="#contact">Contact</a></li></ul></div>
-            <div><h4>Contact</h4><p>Xiaoshan District, Hangzhou, China</p></div>
+            <div class="footer-brand">
+                <h3>Hangzhou Hafa Trading Co., Ltd.</h3>
+                <p>"Your trusted China–Africa business partner."</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#how">How It Works</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p>Xiaoshan District, Hangzhou, China</p>
+            </div>
         </div>
         <div class="footer-bottom">© 2026 Hangzhou Hafa Trading Co., Ltd. All rights reserved.</div>
     </div>
 </footer>
 
 <script>
+    // NAVBAR TOGGLE
     const navbarToggle = document.getElementById('navbarToggle');
     const navbarMenu = document.getElementById('navbarMenu');
-    navbarToggle.addEventListener('click', () => { navbarMenu.classList.toggle('active'); });
-    navbarMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => navbarMenu.classList.remove('active')));
+    const navbar = document.getElementById('navbar');
 
+    navbarToggle.addEventListener('click', () => {
+        navbarToggle.classList.toggle('active');
+        navbarMenu.classList.toggle('active');
+    });
+
+    navbarMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navbarToggle.classList.remove('active');
+            navbarMenu.classList.remove('active');
+        });
+    });
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+    });
+
+    // SMOOTH SCROLL
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const target = document.querySelector(this.getAttribute('href'));
@@ -254,6 +543,7 @@
         });
     });
 
+    // FORM
     const form = document.getElementById('serviceForm');
     const success = document.getElementById('formSuccess');
     form.addEventListener('submit', function(e) {
@@ -266,6 +556,14 @@
         setTimeout(() => { form.reset(); }, 1000);
         setTimeout(() => { success.style.display = 'none'; }, 6000);
     });
+
+    // SCROLL REVEAL
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 </script>
 </body>
 </html>

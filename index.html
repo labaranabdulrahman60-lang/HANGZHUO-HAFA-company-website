@@ -27,10 +27,8 @@
             --shadow-sm: 0 1px 3px rgba(10, 26, 58, 0.06);
             --shadow-md: 0 8px 24px rgba(10, 26, 58, 0.08);
             --shadow-lg: 0 20px 40px rgba(10, 26, 58, 0.12);
-            --shadow-xl: 0 30px 60px rgba(10, 26, 58, 0.15);
             --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
             --max-width: 1280px;
         }
@@ -56,9 +54,8 @@
             padding-top: 90px;
         }
 
-        img {
+        img, svg {
             max-width: 100%;
-            height: auto;
             display: block;
         }
 
@@ -78,40 +75,6 @@
             padding: 0 2rem;
         }
 
-        /* ========== TYPOGRAPHY ========== */
-        .text-heading {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            line-height: 1.25;
-            letter-spacing: -0.01em;
-            color: var(--text-heading);
-        }
-
-        .text-subheading {
-            font-size: 1.125rem;
-            color: var(--text-body);
-            line-height: 1.7;
-        }
-
-        .text-uppercase {
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-
-        .text-blue {
-            color: var(--blue);
-        }
-
-        .text-gold {
-            color: var(--gold);
-        }
-
-        .section-padding {
-            padding: clamp(4rem, 8vw, 7rem) 0;
-        }
-
         /* ========== NAVIGATION ========== */
         .navbar {
             position: fixed;
@@ -128,7 +91,7 @@
 
         .navbar.scrolled {
             box-shadow: 0 4px 30px rgba(10, 26, 58, 0.5);
-            height: 80px;
+            height: 75px;
         }
 
         .navbar-inner {
@@ -139,36 +102,69 @@
             gap: 2rem;
         }
 
+        /* DIGITAL BRAND LOGO */
         .navbar-brand {
             display: flex;
             align-items: center;
+            gap: 0.75rem;
             flex-shrink: 0;
-            line-height: 1;
-            animation: logoBounce 3s ease-in-out infinite;
         }
 
-        @keyframes logoBounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
+        .brand-icon {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(139, 165, 196, 0.1);
+            animation: iconPulse 2s ease-in-out infinite;
         }
 
-        @keyframes logoGlow {
-            0%, 100% { filter: drop-shadow(0 0 5px rgba(139, 165, 196, 0.3)); }
-            50% { filter: drop-shadow(0 0 15px rgba(139, 165, 196, 0.6)); }
+        @keyframes iconPulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(139, 165, 196, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(139, 165, 196, 0.6); }
         }
 
-        .logo-image {
-            width: auto;
-            height: 70px;
-            object-fit: contain;
-            object-position: left center;
-            display: block;
-            animation: logoGlow 3s ease-in-out infinite;
-            transition: all var(--transition-base);
+        .brand-icon svg {
+            width: 30px;
+            height: 30px;
+            color: var(--blue);
         }
 
-        .navbar.scrolled .logo-image {
-            height: 60px;
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .brand-chinese {
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+
+        .brand-english {
+            color: var(--blue-light);
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #8BA5C4 0%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .navbar.scrolled .brand-icon {
+            width: 40px;
+            height: 40px;
+        }
+        .navbar.scrolled .brand-icon svg {
+            width: 25px;
+            height: 25px;
         }
 
         .navbar-menu {
@@ -185,7 +181,6 @@
             padding: 0.5rem 0;
             transition: color var(--transition-fast);
             white-space: nowrap;
-            letter-spacing: 0.02em;
         }
 
         .navbar-menu a::after {
@@ -197,7 +192,6 @@
             height: 2px;
             background: var(--blue);
             transition: width var(--transition-base);
-            border-radius: 2px;
         }
 
         .navbar-menu a:hover {
@@ -215,14 +209,11 @@
             font-weight: 600;
             font-size: 0.9rem;
             transition: all var(--transition-fast);
-            flex-shrink: 0;
             white-space: nowrap;
-            border: 2px solid transparent;
         }
         .navbar-cta:hover {
             background: var(--blue-light);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(139, 165, 196, 0.4);
         }
 
         .navbar-toggle {
@@ -231,7 +222,6 @@
             border: none;
             cursor: pointer;
             padding: 0.5rem;
-            z-index: 1001;
         }
 
         .navbar-toggle span {
@@ -267,8 +257,7 @@
                 align-items: flex-start;
                 padding: 3rem 2rem;
                 gap: 1.5rem;
-                transition: right var(--transition-slow);
-                box-shadow: -10px 0 30px rgba(10, 26, 58, 0.5);
+                transition: right 0.5s;
             }
             .navbar-menu.active {
                 right: 0;
@@ -280,19 +269,24 @@
 
         @media (max-width: 768px) {
             body {
-                padding-top: 80px;
+                padding-top: 70px;
             }
             .navbar {
-                height: 80px;
-            }
-            .logo-image {
-                height: 55px;
-            }
-            .navbar.scrolled {
                 height: 70px;
             }
-            .navbar.scrolled .logo-image {
-                height: 50px;
+            .brand-icon {
+                width: 35px;
+                height: 35px;
+            }
+            .brand-icon svg {
+                width: 22px;
+                height: 22px;
+            }
+            .brand-chinese {
+                font-size: 0.9rem;
+            }
+            .brand-english {
+                font-size: 1rem;
             }
         }
 
@@ -342,7 +336,6 @@
             margin-bottom: 2rem;
             font-size: 0.85rem;
             color: var(--blue-light);
-            font-weight: 500;
         }
 
         .hero-title {
@@ -369,66 +362,68 @@
             flex-wrap: wrap;
         }
 
-        /* ========== BUTTONS ========== */
         .btn {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 0.5rem;
             padding: 1rem 2rem;
             font-size: 0.95rem;
             font-weight: 600;
-            letter-spacing: 0.02em;
             border-radius: 6px;
             cursor: pointer;
             transition: all var(--transition-base);
             border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
         }
 
         .btn-blue {
             background: var(--blue);
             color: var(--navy);
-            box-shadow: 0 4px 15px rgba(139, 165, 196, 0.3);
         }
         .btn-blue:hover {
             background: var(--blue-light);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(139, 165, 196, 0.5);
+            box-shadow: 0 8px 25px rgba(139, 165, 196, 0.4);
         }
 
         .btn-gold {
             background: var(--gold-gradient);
             color: var(--navy);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
         .btn-gold:hover {
-            background: var(--gold-light);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
         }
 
-        .btn-outline-white {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-        }
-        .btn-outline-white:hover {
-            background: var(--white);
-            color: var(--navy);
-            border-color: var(--white);
-        }
-
-        /* ========== SERVICES SECTION ========== */
+        /* ========== SERVICES ========== */
         .services {
             background: var(--off-white);
+            padding: clamp(4rem, 8vw, 7rem) 0;
         }
 
         .services-header {
             text-align: center;
             max-width: 700px;
             margin: 0 auto 4rem;
+        }
+
+        .text-uppercase {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--blue);
+        }
+
+        .text-heading {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--text-heading);
+            margin: 0.5rem 0 1rem;
+        }
+
+        .text-subheading {
+            color: var(--text-body);
+            font-size: 1.125rem;
         }
 
         .services-grid {
@@ -464,7 +459,6 @@
             box-shadow: var(--shadow-lg);
             border-color: rgba(139, 165, 196, 0.3);
         }
-
         .service-card:hover::before {
             opacity: 1;
         }
@@ -486,22 +480,15 @@
         .service-card p {
             color: var(--text-body);
             font-size: 0.95rem;
-            line-height: 1.7;
         }
 
         /* ========== HOW IT WORKS ========== */
         .how-it-works {
             background: var(--navy);
-            color: var(--white);
+            padding: clamp(4rem, 8vw, 7rem) 0;
         }
-
-        .how-it-works .text-heading {
-            color: var(--white);
-        }
-
-        .how-it-works .text-subheading {
-            color: rgba(255, 255, 255, 0.7);
-        }
+        .how-it-works .text-heading { color: var(--white); }
+        .how-it-works .text-subheading { color: rgba(255,255,255,0.7); }
 
         .steps-grid {
             display: grid;
@@ -509,76 +496,30 @@
             gap: 2rem;
             margin-top: 4rem;
         }
-
-        .step-item {
-            text-align: center;
-            position: relative;
-        }
-
+        .step-item { text-align: center; }
         .step-number {
             font-size: 4rem;
             font-weight: 800;
             color: var(--blue);
-            line-height: 1;
             margin-bottom: 1rem;
         }
-
         .step-item h4 {
             color: var(--white);
-            font-size: 1.2rem;
             margin-bottom: 1rem;
         }
-
         .step-item p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
         }
 
-        /* ========== CONTACT SECTION ========== */
+        /* ========== CONTACT ========== */
         .contact {
-            background: var(--white);
+            padding: clamp(4rem, 8vw, 7rem) 0;
         }
-
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            align-items: start;
         }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-info-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .contact-info-icon {
-            width: 24px;
-            height: 24px;
-            color: var(--blue);
-            flex-shrink: 0;
-            margin-top: 0.25rem;
-        }
-
-        .contact-info-label {
-            font-weight: 600;
-            color: var(--text-heading);
-            font-size: 0.95rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .contact-info-value {
-            color: var(--text-body);
-            font-size: 0.95rem;
-        }
-
-        /* PROFESSIONAL FORM STYLING */
         .contact-form {
             background: var(--white);
             padding: 2.5rem;
@@ -587,38 +528,31 @@
             border: 2px solid var(--navy);
             border-top: 5px solid var(--blue);
         }
-
         .contact-form-title {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--navy);
-            margin-bottom: 1.5rem;
             text-align: center;
+            margin-bottom: 1.5rem;
         }
-
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.25rem;
         }
-
         .form-group {
             display: flex;
             flex-direction: column;
             gap: 0.4rem;
         }
-
         .form-group-full {
             grid-column: 1 / -1;
         }
-
         .form-group label {
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--navy);
-            letter-spacing: 0.02em;
         }
-
         .form-group input,
         .form-group select,
         .form-group textarea {
@@ -627,11 +561,7 @@
             border-radius: 6px;
             font-size: 0.95rem;
             font-family: var(--font-sans);
-            transition: all var(--transition-fast);
-            background: var(--white);
-            color: var(--text-heading);
         }
-
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
@@ -639,12 +569,6 @@
             border-color: var(--blue);
             box-shadow: 0 0 0 3px rgba(139, 165, 196, 0.15);
         }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--gray-400);
-        }
-
         .form-success {
             display: none;
             padding: 1rem;
@@ -652,119 +576,66 @@
             border: 1px solid #86efac;
             border-radius: 6px;
             color: #166534;
-            font-size: 0.9rem;
             margin-top: 1rem;
         }
 
         /* ========== FOOTER ========== */
         .footer {
             background: var(--navy);
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255,255,255,0.8);
+            padding: 5rem 0 1.5rem;
         }
-
         .footer-top {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
             gap: 4rem;
-            padding: 5rem 0 3rem;
+            padding-bottom: 3rem;
         }
-
-        .footer-brand h3 {
-            color: var(--white);
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-brand p {
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-        }
-
+        .footer-brand h3 { color: var(--white); margin-bottom: 0.5rem; }
+        .footer-brand p { font-style: italic; color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; }
+        .footer-social { display: flex; gap: 1rem; }
         .footer-social a {
             width: 40px;
             height: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255,255,255,0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all var(--transition-fast);
             color: var(--white);
+            transition: all var(--transition-fast);
         }
-
         .footer-social a:hover {
             border-color: var(--blue);
             background: var(--blue);
             color: var(--navy);
         }
-
-        .footer-links h4,
-        .footer-contact h4 {
+        .footer-links h4, .footer-contact h4 {
             color: var(--white);
-            font-size: 1rem;
             margin-bottom: 1.5rem;
         }
-
-        .footer-links ul li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-links ul li a:hover {
-            color: var(--blue-light);
-        }
-
-        .footer-contact p {
-            margin-bottom: 0.75rem;
-        }
-
+        .footer-links ul li { margin-bottom: 0.75rem; }
+        .footer-links ul li a:hover { color: var(--blue-light); }
+        .footer-contact p { margin-bottom: 0.75rem; }
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1.5rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.5rem;
             text-align: center;
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255,255,255,0.5);
         }
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 1024px) {
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .steps-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-grid { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 768px) {
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            .steps-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-top {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            .form-group-full {
-                grid-column: 1;
-            }
-            .contact-form {
-                padding: 1.5rem;
-            }
+            .services-grid { grid-template-columns: 1fr; }
+            .steps-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group-full { grid-column: 1; }
         }
 
         /* ========== ANIMATIONS ========== */
@@ -773,7 +644,6 @@
             transform: translateY(40px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
@@ -781,11 +651,21 @@
     </style>
 </head>
 <body>
-    <!-- ========== NAVIGATION ========== -->
+    <!-- NAVIGATION -->
     <nav class="navbar" id="navbar">
         <div class="container navbar-inner">
             <div class="navbar-brand">
-                <img src="hafa-logo.png.png" alt="Hangzhou Hafa Trading Co., Ltd." class="logo-image">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M2 12h20"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-chinese">杭州哈发贸易有限公司</span>
+                    <span class="brand-english">HA FA</span>
+                </div>
             </div>
             <div class="navbar-menu" id="navbarMenu">
                 <a href="#home">Home</a>
@@ -794,20 +674,18 @@
                 <a href="#contact">Contact</a>
                 <a href="#contact" class="navbar-cta">Request a Service</a>
             </div>
-            <button class="navbar-toggle" id="navbarToggle" aria-label="Toggle navigation">
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
 
-    <!-- ========== HERO SECTION ========== -->
+    <!-- HERO -->
     <section class="hero" id="home">
         <div class="hero-bg"></div>
         <div class="container">
             <div class="hero-content">
-                <div class="hero-badge">
-                    <span>✦</span> China–Africa Business Partner
-                </div>
+                <div class="hero-badge">✦ China–Africa Business Partner</div>
                 <h1 class="hero-title">Your Trusted China–Africa Business Partner</h1>
                 <p class="hero-subtitle">Whether you want to buy products from China, ship a container to Africa, attend the Canton Fair, study in China, find reliable factories, or start/expand your China business, we are here to assist you from sourcing to delivery.</p>
                 <div class="hero-buttons">
@@ -818,109 +696,57 @@
         </div>
     </section>
 
-    <!-- ========== SERVICES SECTION ========== -->
-    <section class="services section-padding" id="services">
+    <!-- SERVICES -->
+    <section class="services" id="services">
         <div class="container">
             <div class="services-header">
-                <span class="text-uppercase text-blue">Our Services</span>
+                <span class="text-uppercase">Our Services</span>
                 <h2 class="text-heading">Comprehensive Business Solutions</h2>
                 <p class="text-subheading">From sourcing to delivery, we provide end-to-end support for your China–Africa business needs.</p>
             </div>
             <div class="services-grid">
-                <div class="service-card reveal">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 14l-9 7-9-7 9-7 9 7z"/><path d="M12 3v18"/><path d="M5 10l7 5 7-5"/></svg>
-                    </div>
-                    <h3>Container Shipping</h3>
-                    <p>Reliable support for moving goods between China and Africa with end-to-end logistics coordination.</p>
-                </div>
-                <div class="service-card reveal">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/></svg>
-                    </div>
-                    <h3>Money Exchange</h3>
-                    <p>Currency exchange support for China–Africa business activities with competitive rates.</p>
-                </div>
-                <div class="service-card reveal">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                    </div>
-                    <h3>Product Sourcing</h3>
-                    <p>Helping clients identify and source quality products from verified Chinese suppliers.</p>
-                </div>
-                <div class="service-card reveal">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-                    </div>
-                    <h3>Factory Verification</h3>
-                    <p>On-site factory audits and supplier verification before you make business decisions.</p>
-                </div>
-                <div class="service-card reveal">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10h16v10H4z"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-                    </div>
-                    <h3>Student & Canton Fair Visa Assistance</h3>
-                    <p>Guidance for students and visitors preparing for China travel and business events.</p>
-                </div>
-                <div class="service-card reveal">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l7-3v17"/><path d="M19 21V11l-7-4"/></svg>
-                    </div>
-                    <h3>China Business Services</h3>
-                    <p>Comprehensive support for clients establishing or expanding their China operations.</p>
-                </div>
+                <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 14l-9 7-9-7 9-7 9 7z"/><path d="M12 3v18"/></svg></div><h3>Container Shipping</h3><p>Reliable support for moving goods between China and Africa with end-to-end logistics coordination.</p></div>
+                <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="2"/></svg></div><h3>Money Exchange</h3><p>Currency exchange support for China–Africa business activities with competitive rates.</p></div>
+                <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div><h3>Product Sourcing</h3><p>Helping clients identify and source quality products from verified Chinese suppliers.</p></div>
+                <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><h3>Factory Verification</h3><p>On-site factory audits and supplier verification before you make business decisions.</p></div>
+                <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10h16v10H4z"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><h3>Student & Canton Fair Visa Assistance</h3><p>Guidance for students and visitors preparing for China travel and business events.</p></div>
+                <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l7-3v17"/></svg></div><h3>China Business Services</h3><p>Comprehensive support for clients establishing or expanding their China operations.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- ========== HOW IT WORKS ========== -->
-    <section class="how-it-works section-padding" id="how-it-works">
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works" id="how-it-works">
         <div class="container">
             <div class="services-header">
-                <span class="text-uppercase text-blue">Process</span>
+                <span class="text-uppercase">Process</span>
                 <h2 class="text-heading">How It Works</h2>
                 <p class="text-subheading">A clear, transparent process from first inquiry to successful delivery.</p>
             </div>
             <div class="steps-grid">
-                <div class="step-item reveal">
-                    <div class="step-number">01</div>
-                    <h4>Tell Us What You Need</h4>
-                    <p>Share your sourcing, shipping, or business requirements with our team.</p>
-                </div>
-                <div class="step-item reveal">
-                    <div class="step-number">02</div>
-                    <h4>Find the Right Solution</h4>
-                    <p>We identify the best options and strategies for your specific needs.</p>
-                </div>
-                <div class="step-item reveal">
-                    <div class="step-number">03</div>
-                    <h4>Verify & Arrange</h4>
-                    <p>We verify suppliers, arrange logistics, and handle all the details.</p>
-                </div>
-                <div class="step-item reveal">
-                    <div class="step-number">04</div>
-                    <h4>Move Forward with Confidence</h4>
-                    <p>Proceed with verified partners and clear logistics for success.</p>
-                </div>
+                <div class="step-item reveal"><div class="step-number">01</div><h4>Tell Us What You Need</h4><p>Share your sourcing, shipping, or business requirements.</p></div>
+                <div class="step-item reveal"><div class="step-number">02</div><h4>Find the Right Solution</h4><p>We identify the best options for your needs.</p></div>
+                <div class="step-item reveal"><div class="step-number">03</div><h4>Verify & Arrange</h4><p>We verify suppliers and arrange logistics.</p></div>
+                <div class="step-item reveal"><div class="step-number">04</div><h4>Move Forward with Confidence</h4><p>Proceed with verified partners.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- ========== CONTACT SECTION ========== -->
-    <section class="contact section-padding" id="contact">
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
         <div class="container">
             <div class="contact-grid">
-                <div class="contact-info">
-                    <span class="text-uppercase text-blue">Contact Us</span>
+                <div>
+                    <span class="text-uppercase">Contact Us</span>
                     <h2 class="text-heading">Get in Touch</h2>
-                    <p class="text-subheading">Have a sourcing, shipping, or China business requirement? We're here to help.</p>
-                    <div class="contact-info-item">
-                        <div class="contact-info-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <p class="text-subheading">Have a sourcing, shipping, or China business requirement?</p>
+                    <div style="margin-top:2rem; display:flex; gap:1rem; align-items:flex-start;">
+                        <div style="color:var(--blue); flex-shrink:0; margin-top:0.25rem;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="3"/></svg>
                         </div>
                         <div>
-                            <div class="contact-info-label">Location</div>
-                            <div class="contact-info-value">Xiaoshan District, Hangzhou, China</div>
+                            <div style="font-weight:600; color:var(--text-heading);">Location</div>
+                            <div>Xiaoshan District, Hangzhou, China</div>
                         </div>
                     </div>
                 </div>
@@ -928,46 +754,21 @@
                     <h3 class="contact-form-title">Request a Service</h3>
                     <form id="serviceForm">
                         <div class="form-grid">
-                            <div class="form-group">
-                                <label for="fullName">Full Name *</label>
-                                <input type="text" id="fullName" name="fullName" placeholder="Enter your name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email *</label>
-                                <input type="email" id="email" name="email" placeholder="you@example.com" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone / WhatsApp</label>
-                                <input type="tel" id="phone" name="phone" placeholder="+86 or international">
-                            </div>
-                            <div class="form-group">
-                                <label for="serviceNeeded">Service Needed *</label>
-                                <select id="serviceNeeded" name="serviceNeeded" required>
-                                    <option value="">Select a service</option>
-                                    <option>Container Shipping</option>
-                                    <option>Money Exchange</option>
-                                    <option>Product Sourcing</option>
-                                    <option>Factory Verification</option>
-                                    <option>Student & Canton Fair Visa Assistance</option>
-                                    <option>China Business Services</option>
-                                </select>
-                            </div>
-                            <div class="form-group form-group-full">
-                                <label for="message">Message</label>
-                                <textarea id="message" name="message" rows="4" placeholder="Briefly describe your requirement..."></textarea>
-                            </div>
+                            <div class="form-group"><label for="fullName">Full Name *</label><input type="text" id="fullName" required placeholder="Enter your name"></div>
+                            <div class="form-group"><label for="email">Email *</label><input type="email" id="email" required placeholder="you@example.com"></div>
+                            <div class="form-group"><label for="phone">Phone / WhatsApp</label><input type="tel" id="phone" placeholder="+86"></div>
+                            <div class="form-group"><label for="serviceNeeded">Service Needed *</label><select id="serviceNeeded" required><option value="">Select</option><option>Container Shipping</option><option>Money Exchange</option><option>Product Sourcing</option><option>Factory Verification</option><option>Student & Canton Fair Visa Assistance</option><option>China Business Services</option></select></div>
+                            <div class="form-group form-group-full"><label for="message">Message</label><textarea id="message" rows="4" placeholder="Describe your requirement..."></textarea></div>
                         </div>
-                        <button type="submit" class="btn btn-blue" style="width: 100%; margin-top: 1.5rem;">Submit Request</button>
-                        <div class="form-success" id="formSuccess">
-                            Thank you. Your request has been recorded. A real production version would send this to our customer service team.
-                        </div>
+                        <button type="submit" class="btn btn-blue" style="width:100%; margin-top:1.5rem;">Submit Request</button>
+                        <div class="form-success" id="formSuccess">Thank you. Your request has been recorded. A real production version would send this to our customer service team.</div>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== FOOTER ========== -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-top">
@@ -975,114 +776,10 @@
                     <h3>杭州哈发贸易有限公司</h3>
                     <p>"Your trusted China–Africa business partner."</p>
                     <div class="footer-social">
-                        <a href="#" aria-label="LinkedIn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3-1.9 0-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4c-1.2 0-2.1-.9-2.1-2.1 0-1.2.9-2.1 2.1-2.1 1.2 0 2.1.9 2.1 2.1 0 1.2-.9 2.1-2.1 2.1zm1.8 13H3.5V9h3.6v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7c0-.9-.8-1.7-1.8-1.7z"/></svg>
-                        </a>
-                        <a href="#" aria-label="Twitter">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23 4.9c-.8.4-1.7.6-2.6.8.9-.6 1.6-1.5 2-2.6-.9.5-1.9.9-2.9 1.1-.8-.9-2-1.4-3.4-1.4-2.5 0-4.5 2-4.5 4.5 0 .3 0 .7.1 1C8.9 8.1 5.5 6.2 3.1 3.5c-.4.6-.6 1.4-.6 2.2 0 1.6.8 3 2 3.8-.7 0-1.4-.2-2-.6v.1c0 2.2 1.6 4 3.7 4.4-.4.1-.8.2-1.2.2-.3 0-.6 0-.9-.1.6 1.8 2.3 3.1 4.3 3.1-1.6 1.2-3.5 2-5.7 2-.4 0-.7 0-1.1-.1 2.1 1.3 4.6 2.1 7.3 2.1 8.7 0 13.4-7.2 13.4-13.4v-.6c.9-.7 1.7-1.5 2.3-2.5z"/></svg>
-                        </a>
+                        <a href="#" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3-1.9 0-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4c-1.2 0-2.1-.9-2.1-2.1 0-1.2.9-2.1 2.1-2.1 1.2 0 2.1.9 2.1 2.1 0 1.2-.9 2.1-2.1 2.1zm1.8 13H3.5V9h3.6v11.4z"/></svg></a>
+                        <a href="#" aria-label="Twitter"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23 4.9c-.8.4-1.7.6-2.6.8.9-.6 1.6-1.5 2-2.6-.9.5-1.9.9-2.9 1.1-.8-.9-2-1.4-3.4-1.4-2.5 0-4.5 2-4.5 4.5 0 .3 0 .7.1 1C8.9 8.1 5.5 6.2 3.1 3.5c-.4.6-.6 1.4-.6 2.2 0 1.6.8 3 2 3.8-.7 0-1.4-.2-2-.6v.1c0 2.2 1.6 4 3.7 4.4-.4.1-.8.2-1.2.2-.3 0-.6 0-.9-.1.6 1.8 2.3 3.1 4.3 3.1-1.6 1.2-3.5 2-5.7 2-.4 0-.7 0-1.1-.1 2.1 1.3 4.6 2.1 7.3 2.1 8.7 0 13.4-7.2 13.4-13.4v-.6c.9-.7 1.7-1.5 2.3-2.5z"/></svg></a>
                     </div>
                 </div>
                 <div class="footer-links">
                     <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#how-it-works">How It Works</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4>Contact</h4>
-                    <p>Xiaoshan District, Hangzhou, China</p>
-                    <p>Available for China–Africa business inquiries</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                © 2026 Hangzhou Hafa Trading Co., Ltd. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // ========== NAVBAR TOGGLE ==========
-        const navbarToggle = document.getElementById('navbarToggle');
-        const navbarMenu = document.getElementById('navbarMenu');
-        const navbar = document.getElementById('navbar');
-
-        navbarToggle.addEventListener('click', function() {
-            navbarToggle.classList.toggle('active');
-            navbarMenu.classList.toggle('active');
-        });
-
-        navbarMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navbarToggle.classList.remove('active');
-                navbarMenu.classList.remove('active');
-            });
-        });
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // ========== SMOOTH SCROLLING ==========
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    e.preventDefault();
-                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // ========== FORM HANDLING ==========
-        const form = document.getElementById('serviceForm');
-        const successMessage = document.getElementById('formSuccess');
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('fullName').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const service = document.getElementById('serviceNeeded').value;
-            
-            if (!name || !email || !service) {
-                alert('Please fill in your name, email, and select a service.');
-                return;
-            }
-            
-            successMessage.style.display = 'block';
-            
-            setTimeout(() => {
-                form.reset();
-            }, 1000);
-            
-            setTimeout(() => {
-                successMessage.style.display = 'none';
-            }, 6000);
-        });
-
-        // ========== SCROLL REVEAL ANIMATIONS ==========
-        const revealElements = document.querySelectorAll('.reveal');
-        
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        
-        revealElements.forEach(el => revealObserver.observe(el));
-    </script>
-</body>
-</html>
+                    <ul><li><a href="#home">Home</a></li><li><a href="#services">Services</a></li><li><a href="#how-it-works">How It Works</a></li><

@@ -15,6 +15,8 @@
             --gold: #D4AF37;
             --gold-light: #E5C765;
             --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #E5C765 100%);
+            --whatsapp: #25D366;
+            --whatsapp-dark: #1EBE57;
             --white: #FFFFFF;
             --off-white: #F8F9FA;
             --gray-50: #FAFAFA;
@@ -74,13 +76,15 @@
             min-width: 0;
         }
 
-        /* LOGO - FIXED TO FILL SPACE */
+        /* LOGO */
         .navbar-logo {
             height: 70px;
             width: auto;
+            max-width: 300px;
             object-fit: contain;
             object-position: left center;
             display: block;
+            padding: 5px 0;
             transition: all var(--transition);
             animation: logoGlow 3s ease-in-out infinite;
         }
@@ -182,7 +186,7 @@
         @media (max-width: 768px) {
             body { padding-top: 75px; }
             .navbar { height: 75px; }
-            .navbar-logo { height: 50px; }
+            .navbar-logo { height: 50px; max-width: 200px; }
             .navbar.scrolled { height: 65px; }
             .navbar.scrolled .navbar-logo { height: 45px; }
         }
@@ -267,6 +271,8 @@
         .btn-blue:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,165,196,0.4); }
         .btn-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.4); }
         .btn-outline:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
+        .btn-whatsapp { background: var(--whatsapp); color: var(--white); }
+        .btn-whatsapp:hover { background: var(--whatsapp-dark); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,211,102,0.4); }
 
         /* ========== SECTIONS ========== */
         .section { padding: 5rem 0; }
@@ -345,6 +351,38 @@
             margin-top: 1rem;
         }
 
+        /* WHATSAPP FLOATING BUTTON */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            width: 60px;
+            height: 60px;
+            background: var(--whatsapp);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+            transition: all var(--transition);
+            animation: whatsappPulse 2s ease-in-out infinite;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37,211,102,0.7);
+        }
+        .whatsapp-float svg {
+            width: 35px;
+            height: 35px;
+            color: var(--white);
+        }
+
+        @keyframes whatsappPulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+            50% { box-shadow: 0 4px 35px rgba(37,211,102,0.8); }
+        }
+
         /* FOOTER */
         .footer { background: var(--navy); color: rgba(255,255,255,0.8); padding: 4rem 0 1.5rem; }
         .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
@@ -370,6 +408,8 @@
             .form-grid { grid-template-columns: 1fr; }
             .form-group-full { grid-column: 1; }
             .contact-form { padding: 1.5rem; }
+            .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
+            .whatsapp-float svg { width: 28px; height: 28px; }
         }
 
         /* SCROLL REVEAL */
@@ -383,7 +423,7 @@
 <nav class="navbar" id="navbar">
     <div class="navbar-inner">
         <div class="navbar-brand">
-            <img src="hafa-logo.png.PNG" alt="Hangzhou Hafa Trading Co., Ltd." class="navbar-logo" id="navbarLogo">
+            <img src="hafa-logo.png" alt="Hangzhou Hafa Trading Co., Ltd." class="navbar-logo">
         </div>
         <div class="navbar-menu" id="navbarMenu">
             <a href="#home">Home</a>
@@ -408,7 +448,10 @@
             <p class="hero-subtitle">From sourcing and factory verification to container shipping and business support, we help you connect with reliable opportunities across China and Africa.</p>
             <div class="hero-buttons">
                 <a href="#services" class="btn btn-blue">Explore Our Services</a>
-                <a href="#contact" class="btn btn-outline">Request a Service</a>
+                <a href="https://wa.me/8615168480830" target="_blank" class="btn btn-whatsapp">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp Us
+                </a>
             </div>
         </div>
     </div>
@@ -457,14 +500,28 @@
             <div>
                 <span class="section-label">Contact Us</span>
                 <h2 class="section-title">Get in Touch</h2>
-                <p>Have a sourcing, shipping, or China business requirement?</p>
+                <p style="margin-bottom:1.5rem;">Have a sourcing, shipping, or China business requirement? We're here to help.</p>
+                
                 <div class="contact-info-item">
                     <div class="contact-info-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="3"/></svg>
                     </div>
                     <div>
-                        <strong style="color:var(--text-heading);">Location</strong><br>
+                        <strong style="color:var(--text-heading);">Address</strong><br>
+                        萧山区经济技术开发区永泰丰广场1幢1112室<br>
+                        Yongtaifeng Plaza, Building 1, Room 1112<br>
                         Xiaoshan District, Hangzhou, China
+                    </div>
+                </div>
+                
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div>
+                        <strong style="color:var(--text-heading);">Contact Numbers</strong><br>
+                        +86 151 6848 0830<br>
+                        +86 151 6847 5954
                     </div>
                 </div>
             </div>
@@ -486,6 +543,11 @@
     </div>
 </section>
 
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/8615168480830" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
 <!-- FOOTER -->
 <footer class="footer">
     <div class="container">
@@ -505,7 +567,10 @@
             </div>
             <div class="footer-contact">
                 <h4>Contact</h4>
-                <p>Xiaoshan District, Hangzhou, China</p>
+                <p>萧山区经济技术开发区永泰丰广场1幢1112室</p>
+                <p>Hangzhou, China</p>
+                <p>+86 151 6848 0830</p>
+                <p>+86 151 6847 5954</p>
             </div>
         </div>
         <div class="footer-bottom">© 2026 Hangzhou Hafa Trading Co., Ltd. All rights reserved.</div>

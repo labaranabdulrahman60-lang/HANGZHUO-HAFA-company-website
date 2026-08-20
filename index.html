@@ -14,16 +14,12 @@
             --blue-dark: #5A7A9E;
             --gold: #D4AF37;
             --gold-light: #E5C765;
-            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #E5C765 100%);
-            --whatsapp: #25D366;
-            --whatsapp-dark: #1EBE57;
             --white: #FFFFFF;
             --off-white: #F8F9FA;
             --gray-50: #FAFAFA;
             --gray-100: #F5F5F5;
             --gray-200: #E8E8E8;
             --gray-300: #D4D4D4;
-            --gray-400: #A3A3A3;
             --text-heading: #0A1A3A;
             --text-body: #555555;
             --shadow-sm: 0 1px 3px rgba(10,26,58,0.06);
@@ -31,12 +27,13 @@
             --shadow-lg: 0 20px 40px rgba(10,26,58,0.12);
             --shadow-xl: 0 30px 60px rgba(10,26,58,0.15);
             --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+            --transition-slow: 0.5s cubic-bezier(0.4,0,0.2,1);
             --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-        body { font-family: var(--font); background: var(--white); color: var(--text-body); line-height: 1.6; overflow-x: hidden; padding-top: 90px; }
+        body { font-family: var(--font); background: var(--white); color: var(--text-body); line-height: 1.6; overflow-x: hidden; padding-top: 80px; }
 
         img { max-width: 100%; display: block; }
         a { text-decoration: none; color: inherit; }
@@ -47,17 +44,20 @@
         /* ========== NAVIGATION ========== */
         .navbar {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: var(--navy);
-            border-bottom: 3px solid var(--blue);
-            height: 90px;
+            background: rgba(10, 26, 58, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 165, 196, 0.2);
+            height: 80px;
             display: flex;
             align-items: center;
-            box-shadow: 0 2px 20px rgba(10,26,58,0.3);
-            transition: all var(--transition);
+            transition: all var(--transition-slow);
         }
         .navbar.scrolled {
-            height: 75px;
-            box-shadow: 0 4px 30px rgba(10,26,58,0.5);
+            background: rgba(10, 26, 58, 0.98);
+            height: 70px;
+            border-bottom: 2px solid var(--blue);
+            box-shadow: 0 4px 30px rgba(10,26,58,0.4);
         }
         .navbar-inner {
             display: flex;
@@ -75,28 +75,18 @@
             flex-shrink: 0;
             min-width: 0;
         }
-
-        /* LOGO */
         .navbar-logo {
-            height: 70px;
+            height: 60px;
             width: auto;
-            max-width: 300px;
+            max-width: 280px;
             object-fit: contain;
             object-position: left center;
             display: block;
-            padding: 5px 0;
-            transition: all var(--transition);
-            animation: logoGlow 3s ease-in-out infinite;
+            transition: all var(--transition-slow);
         }
         .navbar.scrolled .navbar-logo {
-            height: 55px;
+            height: 50px;
         }
-
-        @keyframes logoGlow {
-            0%, 100% { filter: drop-shadow(0 0 5px rgba(139,165,196,0.3)); }
-            50% { filter: drop-shadow(0 0 15px rgba(139,165,196,0.6)); }
-        }
-
         .navbar-menu {
             display: flex;
             align-items: center;
@@ -125,11 +115,10 @@
         }
         .navbar-menu a:hover { color: var(--blue-light); }
         .navbar-menu a:hover::after { width: 100%; }
-
         .navbar-cta {
             background: var(--blue);
             color: var(--navy);
-            padding: 0.7rem 1.5rem;
+            padding: 0.65rem 1.4rem;
             border-radius: 4px;
             font-weight: 600;
             font-size: 0.85rem;
@@ -138,10 +127,9 @@
         }
         .navbar-cta:hover {
             background: var(--blue-light);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(139,165,196,0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(139,165,196,0.3);
         }
-
         .navbar-toggle {
             display: none;
             background: none;
@@ -152,26 +140,27 @@
         }
         .navbar-toggle span {
             display: block;
-            width: 28px;
-            height: 3px;
+            width: 26px;
+            height: 2px;
             background: var(--white);
             margin: 5px 0;
             transition: all var(--transition);
             border-radius: 2px;
         }
-        .navbar-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .navbar-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         .navbar-toggle.active span:nth-child(2) { opacity: 0; }
-        .navbar-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+        .navbar-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
         @media (max-width: 1024px) {
             .navbar-menu {
                 position: fixed;
-                top: 90px;
+                top: 80px;
                 right: -100%;
                 width: 100%;
                 max-width: 350px;
-                height: calc(100vh - 90px);
-                background: var(--navy);
+                height: calc(100vh - 80px);
+                background: rgba(10, 26, 58, 0.98);
+                backdrop-filter: blur(20px);
                 flex-direction: column;
                 align-items: flex-start;
                 padding: 2rem;
@@ -184,75 +173,144 @@
         }
 
         @media (max-width: 768px) {
-            body { padding-top: 75px; }
-            .navbar { height: 75px; }
-            .navbar-logo { height: 50px; max-width: 200px; }
-            .navbar.scrolled { height: 65px; }
-            .navbar.scrolled .navbar-logo { height: 45px; }
+            body { padding-top: 70px; }
+            .navbar { height: 70px; }
+            .navbar-logo { height: 45px; max-width: 180px; }
+            .navbar.scrolled { height: 60px; }
+            .navbar.scrolled .navbar-logo { height: 40px; }
         }
 
-        /* ========== HERO ========== */
+        /* ========== CINEMATIC HERO ========== */
         .hero {
             position: relative;
-            min-height: calc(100vh - 90px);
-            background: var(--navy);
+            min-height: 100vh;
             display: flex;
             align-items: center;
             overflow: hidden;
+            background: var(--navy);
         }
-        .hero-bg {
+        .hero-video-wrapper {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, #0A1A3A 0%, #12264A 50%, #1A335C 100%);
+            z-index: 0;
+            overflow: hidden;
         }
-        .hero-bg::before {
+        .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                90deg,
+                rgba(10,26,58,0.92) 0%,
+                rgba(10,26,58,0.72) 45%,
+                rgba(10,26,58,0.82) 100%
+            );
+            z-index: 1;
+        }
+        .route-animation {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            opacity: 0.7;
+        }
+        .route-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+        }
+        .route-line {
+            width: 180px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold), var(--blue));
+            position: relative;
+            overflow: hidden;
+        }
+        .route-line::after {
             content: '';
             position: absolute;
-            inset: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(139,165,196,0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(139,165,196,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 60% 80%, rgba(212,175,55,0.1) 0%, transparent 50%);
+            top: -2px;
+            left: -50%;
+            width: 50%;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+            animation: routeDash 3s linear infinite;
         }
+        @keyframes routeDash {
+            0% { left: -50%; }
+            100% { left: 100%; }
+        }
+        .route-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+        @keyframes dotPulse {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             max-width: 700px;
             margin: 0 auto;
             text-align: center;
-            padding: 3rem 0;
+            padding: 4rem 0 6rem;
         }
         .hero-badge {
             display: inline-block;
-            background: rgba(139,165,196,0.15);
+            background: rgba(139,165,196,0.12);
             border: 1px solid rgba(139,165,196,0.3);
-            padding: 0.4rem 1.2rem;
+            padding: 0.45rem 1.3rem;
             border-radius: 50px;
             margin-bottom: 1.5rem;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--blue-light);
-            font-weight: 500;
-            letter-spacing: 0.05em;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
         .hero-title {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
             font-weight: 700;
             color: var(--white);
             line-height: 1.15;
             margin-bottom: 1.2rem;
             letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
         }
         .hero-subtitle {
             font-size: 1.1rem;
             color: rgba(255,255,255,0.8);
             line-height: 1.7;
             margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
         }
         .hero-buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .btn {
@@ -269,10 +327,35 @@
         }
         .btn-blue { background: var(--blue); color: var(--navy); }
         .btn-blue:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,165,196,0.4); }
-        .btn-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.4); }
-        .btn-outline:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
-        .btn-whatsapp { background: var(--whatsapp); color: var(--white); }
-        .btn-whatsapp:hover { background: var(--whatsapp-dark); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,211,102,0.4); }
+        .btn-whatsapp { background: #25D366; color: var(--white); }
+        .btn-whatsapp:hover { background: #1EBE57; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,211,102,0.4); }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease-out 1.2s both;
+        }
+        .scroll-indicator-arrow {
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid rgba(255,255,255,0.6);
+            border-bottom: 2px solid rgba(255,255,255,0.6);
+            transform: rotate(45deg);
+            margin: 0.5rem auto 0;
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+        @keyframes scrollBounce {
+            0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 0.6; }
+            50% { transform: rotate(45deg) translate(5px, 5px); opacity: 1; }
+        }
 
         /* ========== SECTIONS ========== */
         .section { padding: 5rem 0; }
@@ -287,7 +370,7 @@
         .service-card {
             background: var(--white);
             border: 1px solid var(--gray-200);
-            border-radius: 8px;
+            border-radius: 6px;
             padding: 2rem 1.5rem;
             transition: all var(--transition);
         }
@@ -351,33 +434,28 @@
             margin-top: 1rem;
         }
 
-        /* WHATSAPP FLOATING BUTTON */
+        /* WHATSAPP FLOAT */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
             right: 30px;
             z-index: 999;
-            width: 60px;
-            height: 60px;
-            background: var(--whatsapp);
+            width: 55px;
+            height: 55px;
+            background: #25D366;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 20px rgba(37,211,102,0.5);
             transition: all var(--transition);
-            animation: whatsappPulse 2s ease-in-out infinite;
+            animation: whatsappPulse 3s ease-in-out infinite;
         }
         .whatsapp-float:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 30px rgba(37,211,102,0.7);
         }
-        .whatsapp-float svg {
-            width: 35px;
-            height: 35px;
-            color: var(--white);
-        }
-
+        .whatsapp-float svg { width: 30px; height: 30px; color: var(--white); }
         @keyframes whatsappPulse {
             0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
             50% { box-shadow: 0 4px 35px rgba(37,211,102,0.8); }
@@ -408,8 +486,14 @@
             .form-grid { grid-template-columns: 1fr; }
             .form-group-full { grid-column: 1; }
             .contact-form { padding: 1.5rem; }
-            .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
-            .whatsapp-float svg { width: 28px; height: 28px; }
+            .whatsapp-float { width: 45px; height: 45px; bottom: 20px; right: 20px; }
+            .whatsapp-float svg { width: 25px; height: 25px; }
+            .route-line { width: 80px; }
+        }
+
+        /* REDUCED MOTION */
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
         }
 
         /* SCROLL REVEAL */
@@ -438,22 +522,44 @@
     </div>
 </nav>
 
-<!-- HERO -->
+<!-- CINEMATIC HERO -->
 <section class="hero" id="home">
-    <div class="hero-bg"></div>
+    <div class="hero-video-wrapper">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+            <source src="https://cdn.coverr.co/videos/coverr-a-container-ship-in-the-port-1571/1080p.mp4" type="video/mp4">
+            <source src="hafa-hero.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="hero-overlay"></div>
+
+    <!-- China → Africa Route -->
+    <div class="route-animation">
+        <span class="route-label" style="color: var(--gold);">CHINA</span>
+        <div class="route-line"></div>
+        <div class="route-dot"></div>
+        <div class="route-line"></div>
+        <span class="route-label" style="color: var(--blue-light);">AFRICA</span>
+    </div>
+
     <div class="container">
         <div class="hero-content">
-            <div class="hero-badge">✦ China–Africa Business Partner</div>
+            <div class="hero-badge">China–Africa Business Partner</div>
             <h1 class="hero-title">Your Trusted China–Africa Business Partner</h1>
-            <p class="hero-subtitle">From sourcing and factory verification to container shipping and business support, we help you connect with reliable opportunities across China and Africa.</p>
+            <p class="hero-subtitle">Connecting businesses to reliable sourcing, logistics and opportunities across China and Africa.</p>
             <div class="hero-buttons">
                 <a href="#services" class="btn btn-blue">Explore Our Services</a>
                 <a href="https://wa.me/8615168480830" target="_blank" class="btn btn-whatsapp">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                     WhatsApp Us
                 </a>
             </div>
         </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        Scroll to Explore
+        <div class="scroll-indicator-arrow"></div>
     </div>
 </section>
 
@@ -500,8 +606,7 @@
             <div>
                 <span class="section-label">Contact Us</span>
                 <h2 class="section-title">Get in Touch</h2>
-                <p style="margin-bottom:1.5rem;">Have a sourcing, shipping, or China business requirement? We're here to help.</p>
-                
+                <p style="margin-bottom:1.5rem;">Have a sourcing, shipping, or China business requirement?</p>
                 <div class="contact-info-item">
                     <div class="contact-info-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -513,7 +618,6 @@
                         Xiaoshan District, Hangzhou, China
                     </div>
                 </div>
-                
                 <div class="contact-info-item">
                     <div class="contact-info-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -543,7 +647,7 @@
     </div>
 </section>
 
-<!-- WHATSAPP FLOATING BUTTON -->
+<!-- WHATSAPP FLOAT -->
 <a href="https://wa.me/8615168480830" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
@@ -578,7 +682,6 @@
 </footer>
 
 <script>
-    // NAVBAR TOGGLE
     const navbarToggle = document.getElementById('navbarToggle');
     const navbarMenu = document.getElementById('navbarMenu');
     const navbar = document.getElementById('navbar');
@@ -600,7 +703,6 @@
         else navbar.classList.remove('scrolled');
     });
 
-    // SMOOTH SCROLL
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const target = document.querySelector(this.getAttribute('href'));
@@ -608,7 +710,6 @@
         });
     });
 
-    // FORM
     const form = document.getElementById('serviceForm');
     const success = document.getElementById('formSuccess');
     form.addEventListener('submit', function(e) {
@@ -622,7 +723,6 @@
         setTimeout(() => { success.style.display = 'none'; }, 6000);
     });
 
-    // SCROLL REVEAL
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }

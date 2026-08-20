@@ -3,628 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>杭州哈发贸易有限公司 | Hangzhou Hafa Trading Co., Ltd.</title>
+    <title>Hangzhou Hafa Trading Co., Ltd. | China–Africa Business Partner</title>
     <style>
-        /* ========== CSS VARIABLES & RESET ========== */
         :root {
             --navy: #0A1A3A;
-            --navy-light: #12264A;
-            --navy-lighter: #1A335C;
             --blue: #8BA5C4;
-            --blue-light: #A5BAD4;
-            --blue-dark: #6A8BA8;
             --gold: #D4AF37;
-            --gold-light: #E5C765;
-            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #E5C765 100%);
             --white: #FFFFFF;
             --off-white: #F8F9FA;
-            --gray-50: #FAFAFA;
-            --gray-100: #F5F5F5;
             --gray-200: #E8E8E8;
-            --gray-300: #D4D4D4;
             --text-heading: #0A1A3A;
             --text-body: #555555;
-            --shadow-sm: 0 1px 3px rgba(10, 26, 58, 0.06);
-            --shadow-md: 0 8px 24px rgba(10, 26, 58, 0.08);
-            --shadow-lg: 0 20px 40px rgba(10, 26, 58, 0.12);
-            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
-            --max-width: 1280px;
+            --shadow-lg: 0 20px 40px rgba(10,26,58,0.12);
+            --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font); background: var(--white); color: var(--text-body); line-height: 1.6; padding-top: 80px; }
 
-        html {
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
 
-        body {
-            font-family: var(--font-sans);
-            background: var(--white);
-            color: var(--text-body);
-            line-height: 1.6;
-            overflow-x: hidden;
-            padding-top: 90px;
-        }
-
-        img, svg {
-            max-width: 100%;
-            display: block;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        .container {
-            width: 100%;
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* ========== NAVIGATION ========== */
+        /* NAVBAR */
         .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: var(--navy);
-            border-bottom: 3px solid var(--blue);
-            transition: all var(--transition-base);
-            height: 90px;
-            box-shadow: 0 2px 20px rgba(10, 26, 58, 0.3);
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: var(--navy); border-bottom: 3px solid var(--blue);
+            height: 80px; display: flex; align-items: center;
+            box-shadow: 0 2px 20px rgba(10,26,58,0.3);
         }
-
-        .navbar.scrolled {
-            box-shadow: 0 4px 30px rgba(10, 26, 58, 0.5);
-            height: 75px;
-        }
-
-        .navbar-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-            gap: 2rem;
-        }
-
-        /* DIGITAL BRAND LOGO */
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            flex-shrink: 0;
-        }
-
-        .brand-icon {
-            width: 50px;
-            height: 50px;
-            border: 2px solid var(--blue);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(139, 165, 196, 0.1);
-            animation: iconPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes iconPulse {
-            0%, 100% { box-shadow: 0 0 10px rgba(139, 165, 196, 0.3); }
-            50% { box-shadow: 0 0 25px rgba(139, 165, 196, 0.6); }
-        }
-
-        .brand-icon svg {
-            width: 30px;
-            height: 30px;
-            color: var(--blue);
-        }
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.1;
-        }
-
-        .brand-chinese {
-            color: var(--white);
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-        }
-
-        .brand-english {
-            color: var(--blue-light);
-            font-size: 1.3rem;
-            font-weight: 800;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            background: linear-gradient(135deg, #8BA5C4 0%, #D4AF37 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .navbar.scrolled .brand-icon {
-            width: 40px;
-            height: 40px;
-        }
-        .navbar.scrolled .brand-icon svg {
-            width: 25px;
-            height: 25px;
-        }
-
-        .navbar-menu {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .navbar-menu a {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.95rem;
-            font-weight: 500;
-            position: relative;
-            padding: 0.5rem 0;
-            transition: color var(--transition-fast);
-            white-space: nowrap;
-        }
-
-        .navbar-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--blue);
-            transition: width var(--transition-base);
-        }
-
-        .navbar-menu a:hover {
-            color: var(--blue-light);
-        }
-        .navbar-menu a:hover::after {
-            width: 100%;
-        }
-
-        .navbar-cta {
-            background: var(--blue);
-            color: var(--navy);
-            padding: 0.7rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all var(--transition-fast);
-            white-space: nowrap;
-        }
-        .navbar-cta:hover {
-            background: var(--blue-light);
-            transform: translateY(-2px);
-        }
-
-        .navbar-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .navbar-toggle span {
-            display: block;
-            width: 28px;
-            height: 3px;
-            background: var(--white);
-            margin: 5px 0;
-            transition: all var(--transition-base);
-            border-radius: 2px;
-        }
-
-        .navbar-toggle.active span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-        .navbar-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .navbar-toggle.active span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
+        .navbar-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 2rem; gap: 2rem; }
+        .navbar-brand { display: flex; align-items: center; gap: 0.75rem; }
+        .brand-icon { width: 45px; height: 45px; border: 2px solid var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(139,165,196,0.1); }
+        .brand-icon svg { width: 25px; height: 25px; color: var(--blue); }
+        .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+        .brand-chinese { color: var(--white); font-size: 0.95rem; font-weight: 600; }
+        .brand-english { color: var(--blue); font-size: 1.2rem; font-weight: 800; letter-spacing: 0.15em; }
+        .navbar-menu { display: flex; gap: 2rem; align-items: center; }
+        .navbar-menu a { color: rgba(255,255,255,0.9); font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: color 0.3s; }
+        .navbar-menu a:hover { color: var(--blue); }
+        .navbar-cta { background: var(--blue); color: var(--navy); padding: 0.6rem 1.3rem; border-radius: 4px; font-weight: 600; text-decoration: none; }
+        .navbar-toggle { display: none; background: none; border: none; cursor: pointer; }
+        .navbar-toggle span { display: block; width: 25px; height: 2px; background: var(--white); margin: 5px 0; }
 
         @media (max-width: 1024px) {
-            .navbar-menu {
-                position: fixed;
-                top: 90px;
-                right: -100%;
-                width: 100%;
-                max-width: 400px;
-                height: calc(100vh - 90px);
-                background: var(--navy);
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 3rem 2rem;
-                gap: 1.5rem;
-                transition: right 0.5s;
-            }
-            .navbar-menu.active {
-                right: 0;
-            }
-            .navbar-toggle {
-                display: block;
-            }
+            .navbar-menu { position: fixed; top: 80px; right: -100%; width: 300px; height: calc(100vh - 80px); background: var(--navy); flex-direction: column; padding: 2rem; gap: 1.2rem; transition: right 0.3s; }
+            .navbar-menu.active { right: 0; }
+            .navbar-toggle { display: block; }
         }
 
-        @media (max-width: 768px) {
-            body {
-                padding-top: 70px;
-            }
-            .navbar {
-                height: 70px;
-            }
-            .brand-icon {
-                width: 35px;
-                height: 35px;
-            }
-            .brand-icon svg {
-                width: 22px;
-                height: 22px;
-            }
-            .brand-chinese {
-                font-size: 0.9rem;
-            }
-            .brand-english {
-                font-size: 1rem;
-            }
-        }
+        /* HERO */
+        .hero { position: relative; min-height: calc(100vh - 80px); background: var(--navy); display: flex; align-items: center; overflow: hidden; }
+        .hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0A1A3A 0%, #12264A 50%, #1A335C 100%); }
+        .hero-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; text-align: center; padding: 3rem 0; }
+        .hero-badge { display: inline-block; background: rgba(139,165,196,0.15); border: 1px solid rgba(139,165,196,0.3); padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1.5rem; font-size: 0.8rem; color: var(--blue); }
+        .hero-title { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 700; color: var(--white); margin-bottom: 1.2rem; }
+        .hero-subtitle { font-size: 1.1rem; color: rgba(255,255,255,0.8); margin-bottom: 2rem; }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-        /* ========== HERO SECTION ========== */
-        .hero {
-            position: relative;
-            min-height: calc(100vh - 90px);
-            background: var(--navy);
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
+        .btn { display: inline-flex; padding: 0.9rem 1.8rem; font-size: 0.9rem; font-weight: 600; border-radius: 4px; cursor: pointer; text-decoration: none; transition: all 0.3s; border: 2px solid transparent; }
+        .btn-blue { background: var(--blue); color: var(--navy); }
+        .btn-blue:hover { background: #A5BAD4; transform: translateY(-2px); }
+        .btn-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.4); }
+        .btn-outline:hover { background: var(--white); color: var(--navy); }
 
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, #0A1A3A 0%, #12264A 50%, #1A335C 100%);
-        }
+        /* SECTIONS */
+        .section { padding: 4rem 0; }
+        .section-header { text-align: center; max-width: 650px; margin: 0 auto 2.5rem; }
+        .section-label { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; font-weight: 600; color: var(--blue); }
+        .section-title { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: var(--text-heading); margin: 0.5rem 0; }
+        .section-subtitle { color: var(--text-body); }
 
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(139, 165, 196, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(139, 165, 196, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 60% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
-        }
+        /* SERVICES */
+        .services { background: var(--off-white); }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .service-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 6px; padding: 2rem 1.5rem; }
+        .service-icon { width: 45px; height: 45px; color: var(--blue); margin-bottom: 1rem; }
+        .service-card h3 { font-size: 1.1rem; font-weight: 600; color: var(--text-heading); margin-bottom: 0.6rem; }
+        .service-card p { font-size: 0.9rem; }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 4rem 0;
-        }
+        /* HOW */
+        .how { background: var(--navy); }
+        .how .section-title { color: var(--white); }
+        .how .section-subtitle { color: rgba(255,255,255,0.7); }
+        .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem; }
+        .step { text-align: center; }
+        .step-num { font-size: 3rem; font-weight: 800; color: var(--blue); }
+        .step h4 { color: var(--white); margin: 0.5rem 0; }
+        .step p { color: rgba(255,255,255,0.7); font-size: 0.85rem; }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(139, 165, 196, 0.15);
-            border: 1px solid rgba(139, 165, 196, 0.3);
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            margin-bottom: 2rem;
-            font-size: 0.85rem;
-            color: var(--blue-light);
-        }
+        /* CONTACT */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .contact-form { background: var(--white); padding: 2rem; border-radius: 6px; box-shadow: var(--shadow-lg); border: 2px solid var(--navy); border-top: 4px solid var(--blue); }
+        .form-title { text-align: center; font-size: 1.3rem; font-weight: 700; color: var(--text-heading); margin-bottom: 1.5rem; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+        .form-group-full { grid-column: 1 / -1; }
+        .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--text-heading); }
+        .form-group input, .form-group select, .form-group textarea { padding: 0.75rem; border: 1.5px solid var(--gray-200); border-radius: 4px; font-size: 0.9rem; font-family: var(--font); }
+        .form-success { display: none; padding: 0.8rem; background: #f0fdf4; border: 1px solid #86efac; border-radius: 4px; color: #166534; margin-top: 1rem; }
 
-        .hero-title {
-            font-size: clamp(2.8rem, 6vw, 4.5rem);
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-            color: var(--white);
-            margin-bottom: 1.5rem;
-        }
+        /* FOOTER */
+        .footer { background: var(--navy); color: rgba(255,255,255,0.8); padding: 3rem 0 1.5rem; }
+        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .footer h4 { color: var(--white); margin-bottom: 1rem; }
+        .footer-links li { margin-bottom: 0.5rem; list-style: none; }
+        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; }
+        .footer-bottom { text-align: center; padding-top: 1rem; font-size: 0.8rem; color: rgba(255,255,255,0.5); }
 
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.7;
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all var(--transition-base);
-            border: 2px solid transparent;
-        }
-
-        .btn-blue {
-            background: var(--blue);
-            color: var(--navy);
-        }
-        .btn-blue:hover {
-            background: var(--blue-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(139, 165, 196, 0.4);
-        }
-
-        .btn-gold {
-            background: var(--gold-gradient);
-            color: var(--navy);
-        }
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-        }
-
-        /* ========== SERVICES ========== */
-        .services {
-            background: var(--off-white);
-            padding: clamp(4rem, 8vw, 7rem) 0;
-        }
-
-        .services-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 4rem;
-        }
-
-        .text-uppercase {
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--blue);
-        }
-
-        .text-heading {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            color: var(--text-heading);
-            margin: 0.5rem 0 1rem;
-        }
-
-        .text-subheading {
-            color: var(--text-body);
-            font-size: 1.125rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: 8px;
-            padding: 2.5rem 2rem;
-            transition: all var(--transition-base);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--blue);
-            opacity: 0;
-            transition: opacity var(--transition-base);
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(139, 165, 196, 0.3);
-        }
-        .service-card:hover::before {
-            opacity: 1;
-        }
-
-        .service-icon {
-            width: 56px;
-            height: 56px;
-            margin-bottom: 1.5rem;
-            color: var(--blue);
-        }
-
-        .service-card h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-heading);
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            color: var(--text-body);
-            font-size: 0.95rem;
-        }
-
-        /* ========== HOW IT WORKS ========== */
-        .how-it-works {
-            background: var(--navy);
-            padding: clamp(4rem, 8vw, 7rem) 0;
-        }
-        .how-it-works .text-heading { color: var(--white); }
-        .how-it-works .text-subheading { color: rgba(255,255,255,0.7); }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-        .step-item { text-align: center; }
-        .step-number {
-            font-size: 4rem;
-            font-weight: 800;
-            color: var(--blue);
-            margin-bottom: 1rem;
-        }
-        .step-item h4 {
-            color: var(--white);
-            margin-bottom: 1rem;
-        }
-        .step-item p {
-            color: rgba(255,255,255,0.7);
-        }
-
-        /* ========== CONTACT ========== */
-        .contact {
-            padding: clamp(4rem, 8vw, 7rem) 0;
-        }
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-        .contact-form {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow-lg);
-            border: 2px solid var(--navy);
-            border-top: 5px solid var(--blue);
-        }
-        .contact-form-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--navy);
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.25rem;
-        }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-        .form-group-full {
-            grid-column: 1 / -1;
-        }
-        .form-group label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--navy);
-        }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            padding: 0.85rem 1rem;
-            border: 1.5px solid var(--gray-300);
-            border-radius: 6px;
-            font-size: 0.95rem;
-            font-family: var(--font-sans);
-        }
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--blue);
-            box-shadow: 0 0 0 3px rgba(139, 165, 196, 0.15);
-        }
-        .form-success {
-            display: none;
-            padding: 1rem;
-            background: #f0fdf4;
-            border: 1px solid #86efac;
-            border-radius: 6px;
-            color: #166534;
-            margin-top: 1rem;
-        }
-
-        /* ========== FOOTER ========== */
-        .footer {
-            background: var(--navy);
-            color: rgba(255,255,255,0.8);
-            padding: 5rem 0 1.5rem;
-        }
-        .footer-top {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 4rem;
-            padding-bottom: 3rem;
-        }
-        .footer-brand h3 { color: var(--white); margin-bottom: 0.5rem; }
-        .footer-brand p { font-style: italic; color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; }
-        .footer-social { display: flex; gap: 1rem; }
-        .footer-social a {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            transition: all var(--transition-fast);
-        }
-        .footer-social a:hover {
-            border-color: var(--blue);
-            background: var(--blue);
-            color: var(--navy);
-        }
-        .footer-links h4, .footer-contact h4 {
-            color: var(--white);
-            margin-bottom: 1.5rem;
-        }
-        .footer-links ul li { margin-bottom: 0.75rem; }
-        .footer-links ul li a:hover { color: var(--blue-light); }
-        .footer-contact p { margin-bottom: 0.75rem; }
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 1.5rem;
-            text-align: center;
-            color: rgba(255,255,255,0.5);
-        }
-
-        /* ========== RESPONSIVE ========== */
         @media (max-width: 1024px) {
             .services-grid { grid-template-columns: repeat(2, 1fr); }
             .steps-grid { grid-template-columns: repeat(2, 1fr); }
@@ -633,153 +118,152 @@
         @media (max-width: 768px) {
             .services-grid { grid-template-columns: 1fr; }
             .steps-grid { grid-template-columns: 1fr; }
-            .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-top { grid-template-columns: 1fr; }
             .form-grid { grid-template-columns: 1fr; }
             .form-group-full { grid-column: 1; }
-        }
-
-        /* ========== ANIMATIONS ========== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- NAVIGATION -->
-    <nav class="navbar" id="navbar">
-        <div class="container navbar-inner">
-            <div class="navbar-brand">
-                <div class="brand-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M2 12h20"/>
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                    </svg>
-                </div>
-                <div class="brand-text">
-                    <span class="brand-chinese">杭州哈发贸易有限公司</span>
-                    <span class="brand-english">HA FA</span>
-                </div>
-            </div>
-            <div class="navbar-menu" id="navbarMenu">
-                <a href="#home">Home</a>
-                <a href="#services">Services</a>
-                <a href="#how-it-works">How It Works</a>
-                <a href="#contact">Contact</a>
-                <a href="#contact" class="navbar-cta">Request a Service</a>
-            </div>
-            <button class="navbar-toggle" id="navbarToggle" aria-label="Menu">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </nav>
 
-    <!-- HERO -->
-    <section class="hero" id="home">
-        <div class="hero-bg"></div>
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">✦ China–Africa Business Partner</div>
-                <h1 class="hero-title">Your Trusted China–Africa Business Partner</h1>
-                <p class="hero-subtitle">Whether you want to buy products from China, ship a container to Africa, attend the Canton Fair, study in China, find reliable factories, or start/expand your China business, we are here to assist you from sourcing to delivery.</p>
-                <div class="hero-buttons">
-                    <a href="#services" class="btn btn-blue">Explore Our Services</a>
-                    <a href="#contact" class="btn btn-gold">Request a Service</a>
-                </div>
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+        <div class="navbar-brand">
+            <div class="brand-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div class="brand-text">
+                <span class="brand-chinese">杭州哈发贸易有限公司</span>
+                <span class="brand-english">HA FA</span>
             </div>
         </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="services-header">
-                <span class="text-uppercase">Our Services</span>
-                <h2 class="text-heading">Comprehensive Business Solutions</h2>
-                <p class="text-subheading">From sourcing to delivery, we provide end-to-end support for your China–Africa business needs.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 14l-9 7-9-7 9-7 9 7z"/><path d="M12 3v18"/></svg></div><h3>Container Shipping</h3><p>Reliable support for moving goods between China and Africa with end-to-end logistics coordination.</p></div>
-                <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="2"/></svg></div><h3>Money Exchange</h3><p>Currency exchange support for China–Africa business activities with competitive rates.</p></div>
-                <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div><h3>Product Sourcing</h3><p>Helping clients identify and source quality products from verified Chinese suppliers.</p></div>
-                <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><h3>Factory Verification</h3><p>On-site factory audits and supplier verification before you make business decisions.</p></div>
-                <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10h16v10H4z"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><h3>Student & Canton Fair Visa Assistance</h3><p>Guidance for students and visitors preparing for China travel and business events.</p></div>
-                <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l7-3v17"/></svg></div><h3>China Business Services</h3><p>Comprehensive support for clients establishing or expanding their China operations.</p></div>
-            </div>
+        <div class="navbar-menu" id="navbarMenu">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#how">How It Works</a>
+            <a href="#contact">Contact</a>
+            <a href="#contact" class="navbar-cta">Request a Service</a>
         </div>
-    </section>
+        <button class="navbar-toggle" id="navbarToggle"><span></span><span></span><span></span></button>
+    </div>
+</nav>
 
-    <!-- HOW IT WORKS -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <div class="services-header">
-                <span class="text-uppercase">Process</span>
-                <h2 class="text-heading">How It Works</h2>
-                <p class="text-subheading">A clear, transparent process from first inquiry to successful delivery.</p>
-            </div>
-            <div class="steps-grid">
-                <div class="step-item reveal"><div class="step-number">01</div><h4>Tell Us What You Need</h4><p>Share your sourcing, shipping, or business requirements.</p></div>
-                <div class="step-item reveal"><div class="step-number">02</div><h4>Find the Right Solution</h4><p>We identify the best options for your needs.</p></div>
-                <div class="step-item reveal"><div class="step-number">03</div><h4>Verify & Arrange</h4><p>We verify suppliers and arrange logistics.</p></div>
-                <div class="step-item reveal"><div class="step-number">04</div><h4>Move Forward with Confidence</h4><p>Proceed with verified partners.</p></div>
-            </div>
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="container"><div class="hero-content">
+        <div class="hero-badge">✦ China–Africa Business Partner</div>
+        <h1 class="hero-title">Your Trusted China–Africa Business Partner</h1>
+        <p class="hero-subtitle">From sourcing and factory verification to container shipping and business support, we help you connect with reliable opportunities across China and Africa.</p>
+        <div class="hero-buttons">
+            <a href="#services" class="btn btn-blue">Explore Our Services</a>
+            <a href="#contact" class="btn btn-outline">Request a Service</a>
         </div>
-    </section>
+    </div></div>
+</section>
 
-    <!-- CONTACT -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div>
-                    <span class="text-uppercase">Contact Us</span>
-                    <h2 class="text-heading">Get in Touch</h2>
-                    <p class="text-subheading">Have a sourcing, shipping, or China business requirement?</p>
-                    <div style="margin-top:2rem; display:flex; gap:1rem; align-items:flex-start;">
-                        <div style="color:var(--blue); flex-shrink:0; margin-top:0.25rem;">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="3"/></svg>
-                        </div>
-                        <div>
-                            <div style="font-weight:600; color:var(--text-heading);">Location</div>
-                            <div>Xiaoshan District, Hangzhou, China</div>
-                        </div>
+<!-- SERVICES -->
+<section class="section services" id="services">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Our Services</span>
+            <h2 class="section-title">Comprehensive Business Solutions</h2>
+            <p class="section-subtitle">End-to-end support for your China–Africa trade needs.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 14l-9 7-9-7 9-7 9 7z"/><path d="M12 3v18"/></svg></div><h3>Container Shipping</h3><p>Reliable logistics for moving goods between China and Africa.</p></div>
+            <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="2"/></svg></div><h3>Money Exchange</h3><p>Currency exchange support for cross-border business.</p></div>
+            <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div><h3>Product Sourcing</h3><p>Finding quality products from verified Chinese suppliers.</p></div>
+            <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><h3>Factory Verification</h3><p>On-site audits before you make business decisions.</p></div>
+            <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10h16v10H4z"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><h3>Canton Fair & Visa Assistance</h3><p>Support for travel and business events in China.</p></div>
+            <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l7-3v17"/></svg></div><h3>China Business Services</h3><p>Practical support for your China operations.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section how" id="how">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Process</span>
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">A simple, transparent process.</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step"><div class="step-num">01</div><h4>Tell Us What You Need</h4><p>Share your requirements.</p></div>
+            <div class="step"><div class="step-num">02</div><h4>Find the Right Solution</h4><p>We identify options.</p></div>
+            <div class="step"><div class="step-num">03</div><h4>Verify & Arrange</h4><p>We check and coordinate.</p></div>
+            <div class="step"><div class="step-num">04</div><h4>Move Forward</h4><p>Proceed with confidence.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+    <div class="container">
+        <div class="contact-grid">
+            <div>
+                <span class="section-label">Contact Us</span>
+                <h2 class="section-title">Get in Touch</h2>
+                <p style="margin-bottom:1rem;">Have a sourcing, shipping, or China business requirement?</p>
+                <p><strong>Location:</strong> Xiaoshan District, Hangzhou, China</p>
+            </div>
+            <div class="contact-form">
+                <h3 class="form-title">Request a Service</h3>
+                <form id="serviceForm">
+                    <div class="form-grid">
+                        <div class="form-group"><label>Full Name *</label><input type="text" id="fullName" required placeholder="Your name"></div>
+                        <div class="form-group"><label>Email *</label><input type="email" id="email" required placeholder="you@example.com"></div>
+                        <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" id="phone" placeholder="+86"></div>
+                        <div class="form-group"><label>Service Needed *</label><select id="serviceNeeded" required><option value="">Select</option><option>Container Shipping</option><option>Money Exchange</option><option>Product Sourcing</option><option>Factory Verification</option><option>Canton Fair & Visa Assistance</option><option>China Business Services</option></select></div>
+                        <div class="form-group form-group-full"><label>Message</label><textarea id="message" rows="3" placeholder="Briefly describe..."></textarea></div>
                     </div>
-                </div>
-                <div class="contact-form">
-                    <h3 class="contact-form-title">Request a Service</h3>
-                    <form id="serviceForm">
-                        <div class="form-grid">
-                            <div class="form-group"><label for="fullName">Full Name *</label><input type="text" id="fullName" required placeholder="Enter your name"></div>
-                            <div class="form-group"><label for="email">Email *</label><input type="email" id="email" required placeholder="you@example.com"></div>
-                            <div class="form-group"><label for="phone">Phone / WhatsApp</label><input type="tel" id="phone" placeholder="+86"></div>
-                            <div class="form-group"><label for="serviceNeeded">Service Needed *</label><select id="serviceNeeded" required><option value="">Select</option><option>Container Shipping</option><option>Money Exchange</option><option>Product Sourcing</option><option>Factory Verification</option><option>Student & Canton Fair Visa Assistance</option><option>China Business Services</option></select></div>
-                            <div class="form-group form-group-full"><label for="message">Message</label><textarea id="message" rows="4" placeholder="Describe your requirement..."></textarea></div>
-                        </div>
-                        <button type="submit" class="btn btn-blue" style="width:100%; margin-top:1.5rem;">Submit Request</button>
-                        <div class="form-success" id="formSuccess">Thank you. Your request has been recorded. A real production version would send this to our customer service team.</div>
-                    </form>
-                </div>
+                    <button type="submit" class="btn btn-blue" style="width:100%; margin-top:1rem;">Submit Request</button>
+                    <div class="form-success" id="formSuccess">Thank you. Your request has been recorded.</div>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <h3>杭州哈发贸易有限公司</h3>
-                    <p>"Your trusted China–Africa business partner."</p>
-                    <div class="footer-social">
-                        <a href="#" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3-1.9 0-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4c-1.2 0-2.1-.9-2.1-2.1 0-1.2.9-2.1 2.1-2.1 1.2 0 2.1.9 2.1 2.1 0 1.2-.9 2.1-2.1 2.1zm1.8 13H3.5V9h3.6v11.4z"/></svg></a>
-                        <a href="#" aria-label="Twitter"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23 4.9c-.8.4-1.7.6-2.6.8.9-.6 1.6-1.5 2-2.6-.9.5-1.9.9-2.9 1.1-.8-.9-2-1.4-3.4-1.4-2.5 0-4.5 2-4.5 4.5 0 .3 0 .7.1 1C8.9 8.1 5.5 6.2 3.1 3.5c-.4.6-.6 1.4-.6 2.2 0 1.6.8 3 2 3.8-.7 0-1.4-.2-2-.6v.1c0 2.2 1.6 4 3.7 4.4-.4.1-.8.2-1.2.2-.3 0-.6 0-.9-.1.6 1.8 2.3 3.1 4.3 3.1-1.6 1.2-3.5 2-5.7 2-.4 0-.7 0-1.1-.1 2.1 1.3 4.6 2.1 7.3 2.1 8.7 0 13.4-7.2 13.4-13.4v-.6c.9-.7 1.7-1.5 2.3-2.5z"/></svg></a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul><li><a href="#home">Home</a></li><li><a href="#services">Services</a></li><li><a href="#how-it-works">How It Works</a></li><
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-top">
+            <div><h3 style="color:white;">杭州哈发贸易有限公司</h3><p style="font-style:italic; color:rgba(255,255,255,0.6);">"Your trusted China–Africa business partner."</p></div>
+            <div class="footer-links"><h4>Quick Links</h4><ul><li><a href="#home">Home</a></li><li><a href="#services">Services</a></li><li><a href="#how">How It Works</a></li><li><a href="#contact">Contact</a></li></ul></div>
+            <div><h4>Contact</h4><p>Xiaoshan District, Hangzhou, China</p></div>
+        </div>
+        <div class="footer-bottom">© 2026 Hangzhou Hafa Trading Co., Ltd. All rights reserved.</div>
+    </div>
+</footer>
+
+<script>
+    const navbarToggle = document.getElementById('navbarToggle');
+    const navbarMenu = document.getElementById('navbarMenu');
+    navbarToggle.addEventListener('click', () => { navbarMenu.classList.toggle('active'); });
+    navbarMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => navbarMenu.classList.remove('active')));
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        });
+    });
+
+    const form = document.getElementById('serviceForm');
+    const success = document.getElementById('formSuccess');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const service = document.getElementById('serviceNeeded').value;
+        if (!name || !email || !service) { alert('Please fill in required fields.'); return; }
+        success.style.display = 'block';
+        setTimeout(() => { form.reset(); }, 1000);
+        setTimeout(() => { success.style.display = 'none'; }, 6000);
+    });
+</script>
+</body>
+</html>

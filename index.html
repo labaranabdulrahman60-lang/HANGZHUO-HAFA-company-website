@@ -363,15 +363,29 @@
             text-transform: uppercase;
             animation: fadeInUp 1s ease-out 1.2s both;
         }
-        .scroll-indicator-arrow {
-            width: 18px;
-            height: 18px;
-            border-right: 2px solid rgba(255,255,255,0.6);
-            border-bottom: 2px solid rgba(255,255,255,0.6);
-            transform: rotate(45deg);
-            margin: 0.4rem auto 0;
-            animation: scrollBounce 2s ease-in-out infinite;
-        }
+ .scroll-indicator {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    text-align: center;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.scroll-indicator-arrow {
+    width: 14px;
+    height: 14px;
+    border-right: 2px solid rgba(255,255,255,0.7);
+    border-bottom: 2px solid rgba(255,255,255,0.7);
+    transform: rotate(45deg);
+    margin: 8px auto 0;
+    animation: scrollBounce 2s ease-in-out infinite;
+}
         @keyframes scrollBounce {
             0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 0.6; }
             50% { transform: rotate(45deg) translate(4px, 4px); opacity: 1; }
@@ -549,7 +563,7 @@
 <nav class="navbar" id="navbar" aria-label="Main navigation">
     <div class="navbar-inner">
         <div class="navbar-brand">
-            <img src="hafa-logo-transpparent.png.PNG" alt="Hangzhou Hafa Trading Co., Ltd. logo" class="navbar-logo">
+          <img src="hafa-logo-transparent.png.PNG" alt="Hangzhou Hafa Trading Co., Ltd. logo" class="navbar-logo">
         </div>
         <div class="navbar-menu" id="navbarMenu">
             <a href="#home">Home</a>

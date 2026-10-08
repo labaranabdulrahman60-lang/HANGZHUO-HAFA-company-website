@@ -350,6 +350,8 @@
         .btn-blue:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,165,196,0.4); }
         .btn-whatsapp { background: #25D366; color: var(--white); }
         .btn-whatsapp:hover { background: #1EBE57; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,211,102,0.4); }
+        .btn-gold { background: var(--gold); color: var(--navy); }
+        .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212,175,55,0.4); }
 
         .scroll-indicator {
             position: absolute;
@@ -409,6 +411,9 @@
             border-radius: 6px;
             padding: 2rem 1.5rem;
             transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         .service-card:hover {
             transform: translateY(-4px);
@@ -417,7 +422,34 @@
         }
         .service-icon { width: 42px; height: 42px; color: var(--blue); margin-bottom: 1rem; }
         .service-card h3 { font-size: 1.05rem; font-weight: 600; color: var(--text-heading); margin-bottom: 0.5rem; }
-        .service-card p { font-size: 0.88rem; color: var(--text-body); }
+        .service-card p { font-size: 0.88rem; color: var(--text-body); flex-grow: 1; }
+        .service-card .btn {
+            width: 100%;
+            margin-top: 1.5rem;
+            justify-content: center;
+            font-size: 0.85rem;
+            padding: 0.7rem 1rem;
+        }
+        .service-card .btn-view {
+            background: transparent;
+            color: var(--blue-dark);
+            border: 1.5px solid var(--gray-300);
+            margin-bottom: 0.6rem;
+        }
+        .service-card .btn-view:hover {
+            background: var(--off-white);
+            border-color: var(--blue);
+            color: var(--navy);
+        }
+        .service-card .btn-request {
+            background: var(--blue);
+            color: var(--navy);
+        }
+        .service-card .btn-request:hover {
+            background: var(--blue-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139,165,196,0.4);
+        }
 
         /* HOW IT WORKS */
         .how { background: var(--navy); }
@@ -440,6 +472,11 @@
             box-shadow: var(--shadow-lg);
             border: 1px solid var(--gray-200);
             border-top: 3px solid var(--blue);
+            transition: all var(--transition);
+        }
+        .contact-form.highlight {
+            box-shadow: 0 0 0 4px rgba(139,165,196,0.3), var(--shadow-lg);
+            border-top-color: var(--gold);
         }
         .form-title { font-size: 1.2rem; font-weight: 700; color: var(--text-heading); text-align: center; margin-bottom: 1.2rem; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
@@ -669,11 +706,46 @@
             <p class="section-subtitle">End-to-end support for your China–Africa trade needs.</p>
         </div>
         <div class="services-grid">
-            <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 14l-9 7-9-7 9-7 9 7z"/><path d="M12 3v18"/></svg></div><h3>Container Shipping</h3><p>Reliable logistics for moving goods between China and Africa.</p></div>
-            <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="2"/></svg></div><h3>Money Exchange</h3><p>Currency exchange support for cross-border business.</p></div>
-            <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div><h3>Product Sourcing</h3><p>Finding quality products from verified Chinese suppliers.</p></div>
-            <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><h3>Factory Verification</h3><p>On-site audits before you make business decisions.</p></div>
-            <div class="service-card reveal"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l7-3v17"/></svg></div><h3>China Business Services</h3><p>Practical support for your China operations.</p></div>
+            <!-- Container Shipping -->
+            <div class="service-card reveal">
+                <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 14l-9 7-9-7 9-7 9 7z"/><path d="M12 3v18"/></svg></div>
+                <h3>Container Shipping</h3>
+                <p>Reliable logistics for moving goods between China and Africa. We handle the entire process from port to port with trusted partners.</p>
+                <button class="btn btn-view" onclick="viewDetails('Container Shipping')">View Details</button>
+                <button class="btn btn-request" onclick="selectService('Container Shipping')">Request This Service</button>
+            </div>
+            <!-- Money Exchange -->
+            <div class="service-card reveal">
+                <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="2"/></svg></div>
+                <h3>Money Exchange</h3>
+                <p>Currency exchange support for cross-border business. Safe, transparent, and fast transactions to keep your business moving.</p>
+                <button class="btn btn-view" onclick="viewDetails('Money Exchange')">View Details</button>
+                <button class="btn btn-request" onclick="selectService('Money Exchange')">Request This Service</button>
+            </div>
+            <!-- Product Sourcing -->
+            <div class="service-card reveal">
+                <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div>
+                <h3>Product Sourcing</h3>
+                <p>Finding quality products from verified Chinese suppliers. We help you source the right products at the best prices.</p>
+                <button class="btn btn-view" onclick="viewDetails('Product Sourcing')">View Details</button>
+                <button class="btn btn-request" onclick="selectService('Product Sourcing')">Request This Service</button>
+            </div>
+            <!-- Factory Verification -->
+            <div class="service-card reveal">
+                <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
+                <h3>Factory Verification</h3>
+                <p>On-site audits before you make business decisions. We visit and verify factories so you can trade with confidence.</p>
+                <button class="btn btn-view" onclick="viewDetails('Factory Verification')">View Details</button>
+                <button class="btn btn-request" onclick="selectService('Factory Verification')">Request This Service</button>
+            </div>
+            <!-- China Business Services -->
+            <div class="service-card reveal">
+                <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l7-3v17"/></svg></div>
+                <h3>China Business Services</h3>
+                <p>Practical support for your China operations. From company setup to local representation, we are your on-the-ground partner.</p>
+                <button class="btn btn-view" onclick="viewDetails('China Business Services')">View Details</button>
+                <button class="btn btn-request" onclick="selectService('China Business Services')">Request This Service</button>
+            </div>
         </div>
     </div>
 </section>
@@ -725,7 +797,7 @@
                     </div>
                 </div>
             </div>
-            <div class="contact-form">
+            <div class="contact-form" id="contactForm">
                 <h3 class="form-title">Request a Service</h3>
                 <form id="serviceForm" onsubmit="sendToWhatsApp(event)">
                     <div class="form-grid">
@@ -833,6 +905,48 @@ function sendToWhatsApp(event) {
         document.getElementById('serviceForm').reset();
         formMessage.style.display = 'none';
     }, 4000);
+}
+
+// ============================================================
+// SERVICE CARD INTERACTIONS
+// ============================================================
+function selectService(serviceName) {
+    // 1. Set the dropdown value
+    const select = document.getElementById('serviceNeeded');
+    for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].value === serviceName) {
+            select.selectedIndex = i;
+            break;
+        }
+    }
+    // If no exact match, add it
+    if (select.value !== serviceName) {
+        const opt = document.createElement('option');
+        opt.value = serviceName;
+        opt.text = serviceName;
+        opt.selected = true;
+        select.add(opt);
+    }
+
+    // 2. Scroll to the contact form
+    const contactForm = document.getElementById('contactForm');
+    contactForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // 3. Highlight the form briefly
+    contactForm.classList.add('highlight');
+    setTimeout(() => {
+        contactForm.classList.remove('highlight');
+    }, 2000);
+
+    // 4. Focus on the first field (Name)
+    setTimeout(() => {
+        document.getElementById('fullName').focus();
+    }, 800);
+}
+
+function viewDetails(serviceName) {
+    // Simple alert for now. You can later replace this with a modal or dedicated page.
+    alert(`Detailed information for "${serviceName}" is coming soon!\n\nIn the meantime, you can click "Request This Service" to send us a message directly on WhatsApp.`);
 }
 
 // ============================================================
